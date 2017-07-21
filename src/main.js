@@ -6,6 +6,9 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+import Navigation from '@/components/core/navigation/Navigation';
+Vue.component('navigation', Navigation);
+
 new Vue({
     el: '#app',
     router,
