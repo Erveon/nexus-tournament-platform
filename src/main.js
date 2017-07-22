@@ -1,13 +1,19 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import './assets/css/normalize.css';
+import './assets/css/skeleton.css';
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false;
 
-import Navigation from '@/components/core/navigation/Navigation';
-Vue.component('navigation', Navigation);
+import Sidebar from '@/components/core/sidebar/Sidebar';
+import Mainview from '@/components/core/mainview/Mainview';
+import Card from '@/components/core/card/Card';
+
+Vue.component('sidebar', Sidebar);
+Vue.component('main-view', Mainview);
+Vue.component('card', Card);
 
 new Vue({
     el: '#app',

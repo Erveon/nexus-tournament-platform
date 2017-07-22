@@ -5,8 +5,10 @@
   "author": "Erveon <gilles562@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "start cmd.exe @cmd /k \"node build/dev-server.js\" && nodemon server/server.js --watch server",
-    "start": "start cmd.exe @cmd /k \"node build/dev-server.js\" && nodemon server/server.js --watch server",
+    "dev": "start cmd.exe @cmd /k \"npm run start:front\" && npm run start:back",
+    "start": "npm run dev",
+    "start:front": "node build/dev-server.js",
+    "start:back": "nodemon server/server.js --watch server",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
