@@ -2,16 +2,18 @@
     <div id="app">
         <sidebar></sidebar>
         <main-view></main-view>
+        <modals></modals>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'app',
+        name: 'app'
     };
 </script>
 
 <style>
+
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -24,6 +26,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        font-family: "Open Sans", sans-serif;
     }
 
     img {

@@ -1,16 +1,20 @@
 <template>
     <div id="nav-account">
-        <a href="#" @click.prevent class="connect">
+        <a href="#" @click.prevent="showConnect" class="connect">
             Sign up / Log in
         </a>
     </div>
 </template>
 
 <script>
+    import { EventBus } from '../../../eventbus.js';
+
     export default {
         name: "nav-account",
-        data() {
-            return { };
+        methods: {
+            showConnect() {
+                EventBus.$emit('showconnect');
+            }
         }
     };
 </script>

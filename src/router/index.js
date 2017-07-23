@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Hello from '@/components/Hello';
-import Tournaments from '@/components/Tournaments';
+import Hello from '@/components/pages/Hello';
+import Tournaments from '@/components/pages/Tournaments';
 
 Vue.use(Router);
 
