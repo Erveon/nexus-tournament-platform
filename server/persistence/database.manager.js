@@ -6,20 +6,22 @@ const Client = pg.Client;
 const Pool = pg.Pool;
 
 let Database = {};
-
 pg.defaults.poolSize = 10;
 
-this.pool = new Pool(settings.database);
-this.pool.on('error', (err, client) => logger.error(`client error: ${err.message}`));
+Database.init = () => {
+    let pool = new Pool(settings.database);
+    pool.on('error', (err, client) => logger.error(`client error: ${err.message}`));
+    Database.pool = pool;
+}
 
 /****
  * Query the database
  * Examples: https://github.com/brianc/node-postgres/wiki/pg
  ****/
 Database.query = (query, values) => {
-    return this.pool
+    return Database.pool
     .query(query, values)
-    .catch(logger.error);
+    .catch(console.error);
 }
 
 /****
@@ -28,7 +30,7 @@ Database.query = (query, values) => {
  * After using the client, release() it back into the pool.
  ****/
 Database.getClient = (callback) => {
-    return this.pool.connect(callback);
+    return Database.pool.connect(callback);
 }
 
 module.exports = Database;

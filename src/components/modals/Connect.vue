@@ -50,6 +50,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import { EventBus } from '../../eventbus.js';
     import $ from 'jquery';
 
@@ -82,6 +83,18 @@
                 this.submitted = true;
                 //this.submitting = true;
                 //$("input").prop('disabled', true);
+                if(this.login) {
+                    axios.post(`api/auth/login`, {
+                        email: this.email,
+                        password: this.password
+                    });
+                } else {
+                    axios.post(`api/auth/register`, {
+                        email: this.email,
+                        username: this.username,
+                        password: this.password
+                    });
+                }
             },
             close() {
                 if(this.submitting) return;
