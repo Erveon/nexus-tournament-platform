@@ -16,7 +16,7 @@ Manager.emailExists = async (email) => {
 };
 
 Manager.create = async (email, username, password) => {
-    let securepassword = security.hashPassword(password);
+    let securepassword = await security.hashPassword(password);
     let id = await database.createAccount(email, username, securepassword);
     if(id) {
         let code = Manager.generateActivationCode(id);
