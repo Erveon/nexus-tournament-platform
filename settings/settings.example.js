@@ -2,9 +2,6 @@
  * Production: Remove the .example
  */
 module.exports = {
-    general: {
-        url: "http://localhost:8080"
-    },
     database: {
         host: "localhost",
         user: "postgres",

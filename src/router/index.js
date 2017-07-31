@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Hello from '@/components/pages/Hello';
 import Tournaments from '@/components/pages/Tournaments';
+import Activate from '@/components/account/Activate';
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
             path: '/tournaments',
             name: 'Tournaments',
             component: Tournaments,
+        },
+        {
+            path: '/activate',
+            name: 'Activate',
+            component: Activate,
         },
     ],
 });

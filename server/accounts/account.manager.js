@@ -18,14 +18,14 @@ Manager.emailExists = async (email) => {
 Manager.create = async (email, username, password) => {
     let securepassword = await security.hashPassword(password);
     let id = await database.createAccount(email, username, securepassword);
-    if(id) {
-        let code = Manager.generateActivationCode(id);
-        await database.insertActivationCode(id, code);
-        emails.sendActivationMail(email, username, code);
-        return true;
-    }
-    return false;
+    return new Account(id, email, username, false, 0);
 };
+
+Manager.createActivationCode = async (account, hostAddress) => {
+    let code = Manager.generateActivationCode(id);
+    database.insertActivationCode(id, code);
+    emails.sendActivationMail(email, username, code, hostAddress);
+}
 
 Manager.authenticate = (email, password) => {
 

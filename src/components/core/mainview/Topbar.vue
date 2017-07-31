@@ -1,16 +1,16 @@
 <template>
     <div id="topbar">
-        Home / <strong>{{ breadcrumb }}</strong>
+        Nexus / <strong>{{ breadcrumb }}</strong>
     </div>
 </template>
 
 <script>
     export default {
         name: "topbar",
-        data() {
-            return { 
-                breadcrumb: "Home"
-            };
+        computed: {
+            breadcrumb() {
+                return this.$route.name
+            }
         }
     };
 </script>

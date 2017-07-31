@@ -3,10 +3,11 @@ const router = express.Router();
 
 const accounts = require('../accounts/account.manager');
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     let post = req.body;
-    accounts.create(post.email, post.username, post.password);
-    res.json({success: true});
+    let account = await accounts.create(post.email, post.username, post.password);
+    accounts.createActivationCode(account, req.get('host'));
+    res.sendStatus(200);
 });
 
 module.exports = router;

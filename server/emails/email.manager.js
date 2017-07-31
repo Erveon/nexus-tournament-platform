@@ -9,8 +9,8 @@ Manager.templates = {
     activate: require('./templates/activation.template')
 };
 
-Manager.sendActivationMail = (email, username, code) => {
-    let mailoptions = Manager.templates.activate(username, code);
+Manager.sendActivationMail = (email, username, code, hostAddress) => {
+    let mailoptions = Manager.templates.activate(username, code, hostAddress);
     mailoptions.from = settings.email.from;
     mailoptions.to = email;
     
