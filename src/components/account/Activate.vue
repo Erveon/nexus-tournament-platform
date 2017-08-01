@@ -1,18 +1,37 @@
 <template>
-    <card>
-        Well you really fucked up, didn't you? Can't even click a fucking link? Jesus fucking Christ how stupid can someone actually be? It's literally a link. A link you click. I hope at least your parents love you for your 'personality', dumb shit.
+    <card class="activation">
+        {{ message }}
     </card>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "Activate",
+    data() {
+        return {
+            message: 'Activating your account..'
+        }
+    },
     created() {
-        console.log(this.$route.query);
+        let key = this.$route.query.key;
+        if(!key) {
+            this.message = "Please click the link in your activation email to activate your account";
+        } else {
+            axios.post('/api/auth/activate', { key: key })
+            .then(response => {
+                this.message = "Your account has been activated, you can now log in. Welcome to Nexus!";
+            }).catch(err => {
+                this.message = "Your activation key is incorrect. Has your account been activated already?";
+            });
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
+    .activation {
+        text-align: center;
+    }
 </style>

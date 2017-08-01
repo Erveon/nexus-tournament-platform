@@ -9,6 +9,7 @@ const token = jwt.sign({ nexus: 'gaming' }, 'rgeeDh1jH8re9Dgrr');
 router.use('/auth', require('./auth.api'));
 
 router.get('/', (req, res) => {
+    console.log(req.headers);
     res.json({success: true, token: token});
 });
 

@@ -73,7 +73,7 @@ function setActivated(accountid) {
 }
 
 function removeActivationCode(accountid) {
-    database.query(`REMOVE FROM activation_codes WHERE accountid = $1`, [accountid]);
+    database.query(`DELETE FROM activation_codes WHERE accountid = $1`, [accountid]);
 }
 
 Database.activateAccount = (accountid, code) => {
@@ -91,9 +91,18 @@ Database.activateAccount = (accountid, code) => {
     });
 };
 
-Database.exists = (type, value) => {
+Database.emailExists = (value) => {
     return new Promise((resolve, reject) => {
-        database.query(`SELECT * FROM accounts WHERE $1 = $2`, [type, value])
+        database.query(`SELECT * FROM accounts WHERE email = $1`, [value])
+        .then(res => {
+            resolve(res.rows.length !== 0);
+        });
+    });
+};
+
+Database.usernameExists = (value) => {
+    return new Promise((resolve, reject) => {
+        database.query(`SELECT * FROM accounts WHERE username = $1`, [value])
         .then(res => {
             resolve(res.rows.length !== 0);
         });

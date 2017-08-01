@@ -32,7 +32,7 @@
                         <label for="username">Username</label>
                         <input v-model="username" v-validate="'required'" class="u-full-width" type="text" name="username" placeholder="Username" ref="username" id="username">
                     </div>
-                </div>                        
+                </div>
                 <span class="error" v-show="submitted && errors.has('email')">{{ errors.first('email') }}</span>
                 <span class="error" v-show="submitted && errors.has('username')">{{ errors.first('username') }}</span>
                 <label for="password">Password</label>
@@ -79,22 +79,57 @@
                 this.login = false;
                 this.focus();
             },
+            disableInput() {
+                this.submitting = true;
+                $("input").prop('disabled', true);
+            },
+            enableInput() {
+                this.submitting = false;
+                $("input").prop('disabled', false);
+            },
             submit() {
                 this.submitted = true;
-                //this.submitting = true;
-                //$("input").prop('disabled', true);
+                if(this.errors.length > 0) return;
+                this.disableInput();
                 if(this.login) {
-                    axios.post(`api/auth/login`, {
-                        email: this.email,
-                        password: this.password
-                    });
+                    this.processLogin();
                 } else {
-                    axios.post(`api/auth/register`, {
-                        email: this.email,
-                        username: this.username,
-                        password: this.password
-                    });
+                    this.processRegister();
                 }
+            },
+            processLogin() {
+                axios.post(`api/auth/login`, {
+                    email: this.email,
+                    password: this.password
+                }).then(response => {
+                    console.log(response);
+                    this.enableInput();
+                }).catch(err => {
+                    this.enableInput();
+                    alert("Something went wrong!");
+                });
+            },
+            processRegister() {
+                axios.post(`api/auth/register`, {
+                    email: this.email,
+                    username: this.username,
+                    password: this.password
+                }).then(response => {
+                    let data = response.data;
+                    if(data.errors) {
+                        data.errors.forEach(error => {
+                            this.errors.add(error, `${error} is unavailable`);
+                        });
+                        console.log(response);
+                        console.log(this.errors);
+                    } else {
+                        alert("All good!");
+                    }
+                    this.enableInput();
+                }).catch(error => {
+                    this.enableInput();
+                    alert("Something went wrong!");
+                });
             },
             close() {
                 if(this.submitting) return;

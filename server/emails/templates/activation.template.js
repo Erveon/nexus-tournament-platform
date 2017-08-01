@@ -2,7 +2,7 @@ const settings = require('../../../settings/settings');
 
 module.exports = function(username, code, hostAddress) {
 
-    let url = `${hostAddress}/activate?code=${code}`;
+    let url = `http://${hostAddress}/activate?key=${code}`;
 
     return {
         subject: 'Nexus Gaming account activation',

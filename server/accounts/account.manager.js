@@ -12,7 +12,11 @@ Manager.get = async (email) => {
 };
 
 Manager.emailExists = async (email) => {
-    return await database.exists('email', email);
+    return await database.emailExists(email);
+};
+
+Manager.usernameExists = async (username) => {
+    return await database.usernameExists(username);
 };
 
 Manager.create = async (email, username, password) => {
@@ -22,9 +26,9 @@ Manager.create = async (email, username, password) => {
 };
 
 Manager.createActivationCode = async (account, hostAddress) => {
-    let code = Manager.generateActivationCode(id);
-    database.insertActivationCode(id, code);
-    emails.sendActivationMail(email, username, code, hostAddress);
+    let code = Manager.generateActivationCode(account.id);
+    database.insertActivationCode(account.id, code);
+    emails.sendActivationMail(account.email, account.username, code, hostAddress);
 }
 
 Manager.authenticate = (email, password) => {
@@ -37,9 +41,9 @@ Manager.generateActivationCode = (accountid) => {
 };
 
 Manager.activate = async (key) => {
-    let code = key.substring(0, 20);
-    let accountid = key.substring(20, key.length);
-    return(await database.activateAccount(accountid, code));
+    let accountid = parseInt(key.substring(20, key.length));
+    if(typeof accountid !== 'number') return false;
+    else return(await database.activateAccount(accountid, key));
 };
 
 module.exports = Manager;
