@@ -15,36 +15,43 @@
                 </div>
                 <label for="login-password">Password</label>
                 <input v-model="password" v-validate="'required'" class="u-full-width" type="password" name="password" placeholder="Password" ref="password" id="login-password" key="pass">
-                <span class="error" v-show="submitted && errors.has('password')">{{ errors.first('password') }}</span>
                 <ladda :loading="submitting" @click.prevent="submit" class="button-primary u-full-width" data-style="zoom-in" type="submit">
                     Log in
                 </ladda>
+                <span id="wrong-credentials" class="error" v-show="submitted && errors.has('password')">{{ errors.first('password') }}</span>
             </form>
         </template>
         <template class="tab register" v-else>
-            <form>
+            <template v-if="!registered">
+                <form>
+                    <div class="row">
+                        <div class="six columns">
+                            <label for="email">Email</label>
+                            <input v-model="email" v-validate="'required|email'" class="u-full-width" type="email" name="email" placeholder="Your@email.com" ref="email" id="email" key="email-input">
+                        </div>
+                        <div class="six columns">
+                            <label for="username">Username</label>
+                            <input v-model="username" v-validate="'required'" class="u-full-width" type="text" name="username" placeholder="Username" ref="username" id="username">
+                        </div>
+                    </div>
+                    <span class="error" v-show="submitted && errors.has('email')">{{ errors.first('email') }}</span>
+                    <span class="error" v-show="submitted && errors.has('username')">{{ errors.first('username') }}</span>
+                    <label for="password">Password</label>
+                    <input v-model="password" v-validate="'required|min:6'" class="u-full-width" type="password" name="password" ref="password" placeholder="Password" id="password" key="pass">
+                    <span class="error" v-show="submitted && errors.has('password')">{{ errors.first('password') }}</span>
+                    <label for="repassword">Confirm password</label>
+                    <input v-model="repassword" v-validate="'required|min:6|confirmed:password'" class="u-full-width" type="password" name="repassword" placeholder="Password" id="repassword" key="register-repass">
+                    <span class="error" v-show="submitted && errors.has('repassword')">{{ errors.first('repassword') }}</span>
+                    <ladda :loading="submitting" @click.prevent="submit" class="button-primary u-full-width" data-style="zoom-in" type="submit">
+                        Sign up
+                    </ladda>
+                </form>
+            </template>
+            <template v-else>
                 <div class="row">
-                    <div class="six columns">
-                        <label for="email">Email</label>
-                        <input v-model="email" v-validate="'required|email'" class="u-full-width" type="email" name="email" placeholder="Your@email.com" ref="email" id="email" key="email-input">
-                    </div>
-                    <div class="six columns">
-                        <label for="username">Username</label>
-                        <input v-model="username" v-validate="'required'" class="u-full-width" type="text" name="username" placeholder="Username" ref="username" id="username">
-                    </div>
+                    Success! Check your emails to activate your account.
                 </div>
-                <span class="error" v-show="submitted && errors.has('email')">{{ errors.first('email') }}</span>
-                <span class="error" v-show="submitted && errors.has('username')">{{ errors.first('username') }}</span>
-                <label for="password">Password</label>
-                <input v-model="password" v-validate="'required|min:6'" class="u-full-width" type="password" name="password" ref="password" placeholder="Password" id="password" key="pass">
-                <span class="error" v-show="submitted && errors.has('password')">{{ errors.first('password') }}</span>
-                <label for="repassword">Confirm password</label>
-                <input v-model="repassword" v-validate="'required|min:6|confirmed:password'" class="u-full-width" type="password" name="repassword" placeholder="Password" id="repassword" key="register-repass">
-                <span class="error" v-show="submitted && errors.has('repassword')">{{ errors.first('repassword') }}</span>
-                <ladda :loading="submitting" @click.prevent="submit" class="button-primary u-full-width" data-style="zoom-in" type="submit">
-                    Sign up
-                </ladda>
-            </form>
+            </template>
         </template>
     </vodal>
 </template>
@@ -62,6 +69,7 @@
                 login: true,
                 submitting: false,
                 submitted: false,
+                registered: false,
                 email: "",
                 username: "",
                 password: "",
@@ -102,11 +110,10 @@
                     email: this.email,
                     password: this.password
                 }).then(response => {
-                    console.log(response);
                     this.enableInput();
                 }).catch(err => {
+                    this.errors.add('password', 'Email or password is incorrect');
                     this.enableInput();
-                    alert("Something went wrong!");
                 });
             },
             processRegister() {
@@ -120,10 +127,8 @@
                         data.errors.forEach(error => {
                             this.errors.add(error, `${error} is unavailable`);
                         });
-                        console.log(response);
-                        console.log(this.errors);
                     } else {
-                        alert("All good!");
+                        this.registered = true;
                     }
                     this.enableInput();
                 }).catch(error => {
@@ -162,6 +167,9 @@
 </script>
 
 <style lang="scss" scoped>
+    #wrong-credentials {
+        margin-top: 5px;
+    }
 
     form {
         margin: 0;

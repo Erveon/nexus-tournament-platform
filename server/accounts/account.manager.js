@@ -3,12 +3,14 @@ const security = require('./auth/security');
 const crypto = require("crypto");
 const Account = require('./account.model');
 const emails = require('../emails/email.manager');
+const jwt = require('jsonwebtoken');
+const settings = require('../../settings/settings');
 
 let Manager = {};
 
 Manager.get = async (email) => {
-    let info = await database.getAccount('email', email);
-    return new Account(info.id, info.email, info.username, info.activated, info.level);
+    let info = await database.getAccountByEmail(email);
+    return new Account(info.id, info.email, info.username, info.password, info.activated, info.level);
 };
 
 Manager.emailExists = async (email) => {
@@ -31,8 +33,18 @@ Manager.createActivationCode = async (account, hostAddress) => {
     emails.sendActivationMail(account.email, account.username, code, hostAddress);
 }
 
-Manager.authenticate = (email, password) => {
+Manager.authenticate = async (email, password) => {
+    let exists = await Manager.emailExists(email);
+    if(exists) {
+        let account = await Manager.get(email);
+        let correct = await security.checkPassword(password, account.password);
+        if(correct) return Manager.generateToken(account);
+    }
+    return false;
+};
 
+Manager.generateToken = async (account) => {
+    return jwt.sign({ sub: account.email }, settings.jwt.secret);
 };
 
 Manager.generateActivationCode = (accountid) => {

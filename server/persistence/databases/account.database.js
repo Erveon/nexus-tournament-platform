@@ -2,9 +2,9 @@ const database = require('../database.manager');
 
 let Database = {};
 
-Database.getAccount = (type, value) => {
+Database.getAccountByEmail = (email) => {
     return new Promise((resolve, reject) => {
-        database.query("SELECT * FROM accounts WHERE $1 = $2", [type, value])
+        database.query("SELECT * FROM accounts WHERE email = $1", [email])
         .then(res => {
             if(res.rows.length === 1) {
                 let account = res.rows[0];

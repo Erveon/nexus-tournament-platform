@@ -7,8 +7,6 @@ router.post('/register', async (req, res) => {
     let post = req.body;
     let emailExists = await accounts.emailExists(post.email);
     let usernameExists = await accounts.usernameExists(post.username);
-    console.log(usernameExists);
-    console.log(emailExists);
     if(emailExists || usernameExists) {
         let errors = [];
         if(emailExists) errors.push("email");
@@ -29,6 +27,14 @@ router.post('/activate', async (req, res) => {
         let success = await accounts.activate(key);
         res.sendStatus(success ? 200 : 403);
     }
+});
+
+router.post('/login', async (req, res) => {
+    let post = req.body;
+    let email = post.email, password = post.password;
+    let token = await accounts.authenticate(email, password);
+    // TODO Set (secure) cookie in request with token
+    res.sendStatus(token ? 200 : 403);
 });
 
 module.exports = router;
