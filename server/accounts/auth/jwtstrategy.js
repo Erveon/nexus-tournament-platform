@@ -6,6 +6,7 @@ const settings = require('../../../settings/settings');
 var opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
     secretOrKey: settings.jwt.secret,
+    issuer: settings.jwt.issuer,
 };
 
 let strategy = new JwtStrategy(opts, (payload, done) => {

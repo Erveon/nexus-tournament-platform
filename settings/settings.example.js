@@ -2,6 +2,7 @@
  * Production: Remove the .example
  */
 module.exports = {
+    production: true,
     database: {
         host: "localhost",
         user: "postgres",
@@ -22,6 +23,8 @@ module.exports = {
         }
     },
     jwt: {
-        secret: "secrethere"
+        secret: "secrethere",
+        issuer: "localhost",
+        audience: "localhost"
     }
 };

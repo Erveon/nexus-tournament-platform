@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const settings = require('../../settings/settings');
 
 const accounts = require('../accounts/account.manager');
 
@@ -33,7 +34,7 @@ router.post('/login', async (req, res) => {
     let post = req.body;
     let email = post.email, password = post.password;
     let token = await accounts.authenticate(email, password);
-    // TODO Set (secure) cookie in request with token
+    res.cookie('auth_token', token, { secure: settings.production, httpOnly: true, sameSite: true });
     res.sendStatus(token ? 200 : 403);
 });
 

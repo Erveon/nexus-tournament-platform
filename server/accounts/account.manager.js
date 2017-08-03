@@ -44,7 +44,9 @@ Manager.authenticate = async (email, password) => {
 };
 
 Manager.generateToken = async (account) => {
-    return jwt.sign({ sub: account.email }, settings.jwt.secret);
+    return jwt.sign({ user: account.email }, settings.jwt.secret, {
+        issuer: settings.jwt.issuer,
+    });
 };
 
 Manager.generateActivationCode = (accountid) => {

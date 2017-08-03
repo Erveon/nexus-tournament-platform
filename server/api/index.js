@@ -6,8 +6,7 @@ const passport = require('passport');
 router.use('/auth', require('./auth.api'));
 
 router.get('/', (req, res) => {
-    console.log(req.headers);
-    res.json({success: true, token: token});
+    res.sendStatus(403);
 });
 
 router.post('/jwt', auth(), (req, res) => {
