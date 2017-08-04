@@ -7,7 +7,8 @@ const server = require('http').createServer(app);
 const passport = require('passport');
 const jwtStrategy = require('./accounts/auth/jwtstrategy');
 
-const helmet = require('helmet')
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 const api = require('./api');
 
@@ -22,6 +23,7 @@ process.on('uncaughtException', err => {
 database.init();
 
 app.use(helmet());
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

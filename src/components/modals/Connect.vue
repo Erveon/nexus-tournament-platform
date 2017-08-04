@@ -87,18 +87,14 @@
                 this.login = false;
                 this.focus();
             },
-            disableInput() {
-                this.submitting = true;
-                $("input").prop('disabled', true);
-            },
-            enableInput() {
-                this.submitting = false;
-                $("input").prop('disabled', false);
+            inputEnabled(bool) {
+                this.submitting = !bool;
+                $("input").prop('disabled', !bool);
             },
             submit() {
                 this.submitted = true;
                 if(this.errors.length > 0) return;
-                this.disableInput();
+                this.inputEnabled(false);
                 if(this.login) {
                     this.processLogin();
                 } else {
@@ -110,10 +106,10 @@
                     email: this.email,
                     password: this.password
                 }).then(response => {
-                    this.enableInput();
+                    this.inputEnabled(true);
                 }).catch(err => {
                     this.errors.add('password', 'Email or password is incorrect');
-                    this.enableInput();
+                    this.inputEnabled(true);
                 });
             },
             processRegister() {
@@ -130,9 +126,9 @@
                     } else {
                         this.registered = true;
                     }
-                    this.enableInput();
+                    this.inputEnabled(true);
                 }).catch(error => {
-                    this.enableInput();
+                    this.inputEnabled(true);
                     alert("Something went wrong!");
                 });
             },

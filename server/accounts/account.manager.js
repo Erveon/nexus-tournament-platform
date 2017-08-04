@@ -45,7 +45,7 @@ Manager.authenticate = async (email, password) => {
 
 Manager.generateToken = async (account) => {
     return jwt.sign({ user: account.email }, settings.jwt.secret, {
-        issuer: settings.jwt.issuer,
+        expiresInMinutes: 1440 // 24h
     });
 };
 
