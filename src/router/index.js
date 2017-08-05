@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Hello from '@/components/pages/Hello';
+import Home from '@/components/pages/Home';
 import Tournaments from '@/components/pages/Tournaments';
 import Activate from '@/components/account/Activate';
 
@@ -13,8 +13,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Hello',
-            component: Hello,
+            name: 'Home',
+            component: Home,
         },
         {
             path: '/tournaments',

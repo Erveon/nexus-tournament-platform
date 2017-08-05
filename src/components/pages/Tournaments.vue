@@ -1,6 +1,6 @@
 <template>
     <div class="tournaments">
-        <card>
+        <card title="Tournaments">
             <p>Hey, {{ test }}</p>
         </card>
     </div>

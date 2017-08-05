@@ -13,6 +13,7 @@ Vue.config.productionTip = false;
 import Sidebar from '@/components/core/sidebar/Sidebar';
 import Mainview from '@/components/core/mainview/Mainview';
 import Card from '@/components/core/card/Card';
+import ComponentSelector from '@/components/utils/ComponentSelector';
 import Modals from '@/components/modals/Modals';
 
 import Vodal from '@/components/modals/vodal';
@@ -28,6 +29,7 @@ Vue.component('ladda', Ladda);
 Vue.component(Sidebar.name, Sidebar);
 Vue.component(Mainview.name, Mainview);
 Vue.component(Card.name, Card);
+Vue.component(ComponentSelector.name, ComponentSelector);
 Vue.component(Modals.name, Modals);
 
 new Vue({

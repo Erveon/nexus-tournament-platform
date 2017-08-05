@@ -20,9 +20,13 @@
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
         height: 100%;
+        color: #2c3e50;
         background-color: #F3F3F4;
+    }
+
+    .dark-theme #app {
+        background-color: #121E29;
     }
 
     html, body {
