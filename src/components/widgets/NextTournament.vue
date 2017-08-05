@@ -1,5 +1,5 @@
 <template>
-    <card :padding=0 title="Next Tournament" class="nt-wrapper">
+    <card :padding=0 title="Next Tournament">
         <div class="next-tournament">
             <div class="info">
                 <p class="title">

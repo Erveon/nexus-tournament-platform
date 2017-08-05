@@ -1,5 +1,5 @@
 <template>
-    <a @click.prevent="toggleTheme()"><i class="fa " :class="{ 'fa-moon-o': theme === 'default', 'fa-sun-o': theme === 'dark' }"></i></a>
+    <a @click.prevent="toggleTheme()"><i class="theme-toggle fa " :class="{ 'fa-moon-o': theme === 'default', 'fa-sun-o': theme === 'dark' }"></i></a>
 </template>
 
 <script>

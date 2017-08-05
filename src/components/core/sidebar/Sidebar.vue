@@ -24,9 +24,16 @@
 
 <style lang="scss" scoped>
     #sidebar {
+        z-index: 100;
         width: 25rem;
         position: absolute;
         height: 100%;
         background-color: #1B2936;
+        margin-left: 0;
+        transition: 0.4s;
+    }
+
+    body.collapsed-sidebar #sidebar {
+        margin-left: -25rem;
     }
 </style>

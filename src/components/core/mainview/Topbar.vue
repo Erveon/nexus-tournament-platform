@@ -1,5 +1,6 @@
 <template>
     <div id="topbar">
+        <sidebar-toggle></sidebar-toggle>
         <span>Nexus / <strong>{{ breadcrumb }}</strong></span>
         <theme-toggle class="pull-right"></theme-toggle>
     </div>
@@ -7,6 +8,7 @@
 
 <script>
     import ThemeToggle from "@/components/utils/ThemeToggle";
+    import SidebarToggle from "@/components/utils/SidebarToggle";
 
     export default {
         name: "topbar",
@@ -16,7 +18,8 @@
             }
         },
         components: {
-            'theme-toggle': ThemeToggle
+            'theme-toggle': ThemeToggle,
+            'sidebar-toggle': SidebarToggle
         }
     };
 </script>
@@ -25,10 +28,14 @@
     #topbar {
         display: block;
         height: 5rem;
-        line-height: 5rem;
         padding: 0 5rem;
         background-color: #fff;
         border: 1px solid #E4E2E2;
+        line-height: 5rem;
+    }
+
+    #topbar > * {
+        vertical-align: middle;
     }
 
     .dark-theme {
@@ -36,6 +43,10 @@
             color: white;
             background-color: #1B2936;
             border: 1px solid #1e1e1e;
+        }
+
+        .menu-toggle {
+            color: white;
         }
     }
 </style>

@@ -11,7 +11,7 @@
 
     export default {
         name: 'app',
-        created() {
+        methods: {
         }
     };
 </script>
@@ -23,6 +23,20 @@
         height: 100%;
         color: #2c3e50;
         background-color: #F3F3F4;
+    }
+
+    @media(max-width: 800px) {
+        #overlay {
+            z-index: 99;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .collapsed-sidebar #overlay {
+            display: none;
+        }
     }
 
     .dark-theme #app {

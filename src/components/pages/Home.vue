@@ -2,7 +2,10 @@
     <div class="home">
         <div class="row">
             <news class="eight columns"></news>
-            <next-tournament class="four columns"></next-tournament>
+            <div class="sidebar four columns">
+                <next-tournament></next-tournament>
+                <tournament-winners></tournament-winners>
+            </div>
         </div>
     </div>
 </template>
@@ -10,6 +13,7 @@
 <script>
     import News from '@/components/news/News';
     import NextTournament from '@/components/widgets/NextTournament';
+    import TournamentWinners from '@/components/widgets/TournamentWinners';
 
     export default {
         name: 'home',
@@ -18,7 +22,8 @@
         },
         components: {
             'news': News,
-            'next-tournament': NextTournament
+            'next-tournament': NextTournament,
+            'tournament-winners': TournamentWinners
         }
     };
 </script>

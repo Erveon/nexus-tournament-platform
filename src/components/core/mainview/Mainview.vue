@@ -24,11 +24,22 @@
 <style lang="scss" scoped>
     main {
         margin-left: 25rem;
+        transition: 0.4s;
 
         #main-view {
             display: block;
             position: relative;
             padding: 3rem 5rem;
         }
+    }
+
+    @media(max-width: 800px) {
+        main {
+            margin-left: 0;
+        }
+    }
+
+    body.collapsed-sidebar main {
+        margin-left: 0;
     }
 </style>
