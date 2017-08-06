@@ -11,8 +11,8 @@ export default {
     data() {
         return {
             tabs: [
-                { title: "Feed", component: Feed },
-                { title: "Announcements", component: Announcements }
+                { title: "Announcements", component: Announcements },
+                { title: "Feed", component: Feed }
             ]
         };
     }

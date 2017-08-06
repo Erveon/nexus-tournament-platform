@@ -33,12 +33,13 @@
         line-height: 5rem;
         color: #E5E5E5;
         padding-left: 4rem;
+        transition: background-color .2s;
 
         i {
             width: 2rem;
         }
 
-        &.active {
+        &.active, &:hover {
             background-color: #121E29;
         }
     }

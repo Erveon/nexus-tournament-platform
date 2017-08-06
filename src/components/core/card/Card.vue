@@ -37,6 +37,6 @@
     .dark-theme .card {
         color: white;
         background-color: #1B2936;
-        border: 1px solid #1e1e1e;
+        border: 1px solid #272e3d;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <card>Feed</card>
+    <card>A newsfeed with recent tournament winners, important announcements and other goodies will appear here.</card>
 </template>
 
 <script>

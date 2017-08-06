@@ -45,19 +45,30 @@
         list-style-type: none;
 
         li {
-            margin: 0 1rem 0 0;
+            margin: 0 1rem .8rem 0;
             display: inline-block;
             cursor: pointer;
             user-select: none;
+            border-bottom: 3px solid transparent;
+            background-color: transparent;
+            transition: .2s;
 
             .card-title {
-                padding: 0 .5rem;
+                padding: 0 .8rem;
             }
 
-            &.active .card-title {
+            &.active {
+                border-bottom: 3px solid #165B88;
                 background-color: #399BDB;
-                //background-color: #98999A;
-                color: white;
+            
+                .card-title {
+                    display: block;
+                    color: white;
+                }
+            }
+
+            &:hover {
+                border-bottom: 3px solid #165B88;
             }
         }
     }
