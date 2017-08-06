@@ -1,10 +1,10 @@
 <template>
-    <card>Announcements</card>
+    <card>Hey</card>
 </template>
 
 <script>
 export default {
-
+    name: "tournament-list"
 }
 </script>
 

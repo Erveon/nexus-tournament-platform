@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '@/components/pages/Home';
-import Tournaments from '@/components/pages/Tournaments';
+import HomePage from '@/components/pages/HomePage';
+import TournamentsPage from '@/components/pages/TournamentsPage';
 import Activate from '@/components/account/Activate';
+
+import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 
 Vue.use(Router);
 
@@ -14,17 +16,22 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            component: Home,
+            component: HomePage,
         },
         {
             path: '/tournaments',
             name: 'Tournaments',
-            component: Tournaments,
+            component: TournamentsPage,
         },
         {
             path: '/activate',
             name: 'Activate',
             component: Activate,
         },
+        {
+            path: '/announcement/:post',
+            name: 'Announcement',
+            component: AnnouncementPost
+        }
     ],
 });

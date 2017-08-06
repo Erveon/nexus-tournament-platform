@@ -16,7 +16,7 @@
     import TournamentWinners from '@/components/widgets/TournamentWinners';
 
     export default {
-        name: 'home',
+        name: 'home-page',
         data() {
             return { };
         },

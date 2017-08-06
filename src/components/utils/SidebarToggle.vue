@@ -28,10 +28,10 @@
             if(!this.isOpen()) {
                 $('body').addClass('collapsed-sidebar');
             }
-            /*this.$router.afterEach(() => {
-                if(window.innerWidth <= 800)
+            this.$router.afterEach(() => {
+                if(this.isOpen() && window.innerWidth <= 800)
                     this.toggleMenu();
-            });*/
+            });
         }
     }
 </script>

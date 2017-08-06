@@ -28,8 +28,8 @@ export default {
     data() {
         return {
             now: Math.trunc((new Date()).getTime() / 1000),
-            date: Math.trunc(Date.parse("August 5, 2017 7:00:00 PM EDT") / 1000),
-            title: "Rocket League 3v3 #32"
+            date: Math.trunc(Date.parse("August 8, 2017 7:00:00 PM EDT") / 1000),
+            title: "Rocket Leauge 1v1 #22"
         }
     },
     computed: {

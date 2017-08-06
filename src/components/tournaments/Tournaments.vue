@@ -3,16 +3,14 @@
 </template>
 
 <script>
-import Feed from './newsfeed/Feed';
-import Announcements from './announcements/Announcements';
+import TournamentList from './tournamentlist/TournamentList';
 
 export default {
-    name: "news",
+    name: "tournaments",
     data() {
         return {
             tabs: [
-                { title: "Feed", component: Feed },
-                { title: "Announcements", component: Announcements }
+                { title: "Tournaments", component: TournamentList },
             ]
         };
     }
@@ -20,5 +18,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  
 </style>

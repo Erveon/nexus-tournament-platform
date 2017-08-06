@@ -1,7 +1,7 @@
 <template>
     <div id="topbar">
         <sidebar-toggle></sidebar-toggle>
-        <span>Nexus / <strong>{{ breadcrumb }}</strong></span>
+        <span><router-link class="home-link" to="/">Nexus</router-link> / <strong>{{ breadcrumb }}</strong></span>
         <theme-toggle class="pull-right"></theme-toggle>
     </div>
 </template>
@@ -25,6 +25,11 @@
 </script>
 
 <style lang="scss" scoped>
+    .home-link {
+        text-decoration: none;
+        color: #2c3e50;
+    }
+
     #topbar {
         display: block;
         height: 5rem;
@@ -46,6 +51,10 @@
         }
 
         .menu-toggle {
+            color: white;
+        }
+
+        .home-link {
             color: white;
         }
     }

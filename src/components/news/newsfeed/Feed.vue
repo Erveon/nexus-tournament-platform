@@ -3,9 +3,9 @@
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        name: "feed"
+    }
 </script>
 
 <style lang="scss" scoped>
