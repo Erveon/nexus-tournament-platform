@@ -106,6 +106,9 @@
                     email: this.email,
                     password: this.password
                 }).then(response => {
+                    let token = response.data.token;
+                    localStorage.setItem('acc_token', token);
+                    // TODO set bearer header in axios
                     this.inputEnabled(true);
                 }).catch(err => {
                     this.errors.add('password', 'Email or password is incorrect');

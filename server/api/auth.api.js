@@ -34,8 +34,12 @@ router.post('/login', async (req, res) => {
     let post = req.body;
     let email = post.email, password = post.password;
     let token = await accounts.authenticate(email, password);
-    res.cookie('auth_token', token, { secure: settings.production, httpOnly: true, sameSite: true });
-    res.sendStatus(token ? 200 : 403);
+    //res.cookie('auth_token', token, { secure: settings.production, httpOnly: true, sameSite: true });
+    if(token) {
+        res.json({ token: token });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 module.exports = router;
