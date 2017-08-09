@@ -57,8 +57,10 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import Account from '@/services/account.service'
     import { EventBus } from '../../eventbus.js';
+
+    import axios from 'axios';
     import $ from 'jquery';
 
     export default {
@@ -102,18 +104,13 @@
                 }
             },
             processLogin() {
-                axios.post(`api/auth/login`, {
-                    email: this.email,
-                    password: this.password
-                }).then(response => {
-                    let token = response.data.token;
-                    localStorage.setItem('acc_token', token);
-                    // TODO set bearer header in axios
-                    this.inputEnabled(true);
-                }).catch(err => {
-                    this.errors.add('password', 'Email or password is incorrect');
-                    this.inputEnabled(true);
-                });
+                Account.authenticate(this.email, this.password)
+                .then(() => {
+                    this.submitting = false;
+                    this.close()
+                })
+                .catch(() => this.errors.add('password', 'Email or password is incorrect'))
+                .then(() => this.inputEnabled(true));
             },
             processRegister() {
                 axios.post(`api/auth/register`, {
