@@ -8,10 +8,12 @@
 
 <script>
     import axios from 'axios';
+    import Account from '@/services/account.service';
 
     export default {
         name: 'app',
-        methods: {
+        mounted() {
+            Account.init();
         }
     };
 </script>

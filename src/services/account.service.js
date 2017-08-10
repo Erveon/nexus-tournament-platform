@@ -1,13 +1,18 @@
 import axios from 'axios';
+import { EventBus } from '@/eventbus.js';
 
 let Account = {};
-Account._authenticated;
+
+Account.authenticated = false;
+Account.username;
+Account.email;
+Account.level = 0;
 
 Account.init = () => {
     let token = localStorage.getItem('acc_token');
     if(token) Account.setToken(token);
     return new Promise((resolve, reject) => {
-        if(this.isAuthenticated()) {
+        if(Account.authenticated) {
             Account.load()
             .then(resolve);
         } else {
@@ -16,15 +21,15 @@ Account.init = () => {
     });
 };
 
-Account.isAuthenticated = () => {
-    return this._authenticated;
-};
-
 Account.load = () => {
     return new Promise((resolve, reject) => {
         axios.get(`api/account`)
         .then(response => {
-            console.log(response.data);
+            let account = response.data;
+            Account.username = account.username;
+            Account.email = account.email;
+            Account.level = account.level;
+            EventBus.$emit('authentication');
             resolve();
         }).catch(reject);
     });
@@ -32,7 +37,7 @@ Account.load = () => {
 
 Account.setToken = (token) => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    this._authenticated = true;
+    Account.authenticated = true;
 };
 
 Account.authenticate = (email, password) => {

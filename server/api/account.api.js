@@ -3,7 +3,13 @@ const router = express.Router();
 const passport = require('passport');
 
 router.get('/', auth(), async (req, res) => {
-    res.json(req.user);
+    let account = req.user;
+    console.log(account);
+    res.json({
+        username: account.username,
+        email: account.email,
+        level: account.level
+    });
 });
 
 function auth() {
