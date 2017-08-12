@@ -8,17 +8,21 @@
 
 <script>
     import axios from 'axios';
-    import Account from '@/services/account.service';
 
     export default {
         name: 'app',
-        mounted() {
-            Account.init();
+        beforeMount() {
+            //this.warn();
+        },
+        methods: {
+            warn() {
+                console.log("%cStop! Don't paste anything in here under any circumstances. People may be trying to steal your account.", "font-family: 'open sans', sans-serif; background: red; color: yellow; font-size: x-large;");
+            }
         }
     };
 </script>
 
-<style>
+<style lang="scss">
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -55,5 +59,31 @@
     img {
         display: block;
         margin: 0 auto;
+    }
+
+    .btn {
+        color: white;
+        padding: .2rem 1rem;
+        text-decoration: none;
+        transition: 0.3s;
+        border-radius: .3rem;
+        background-color: #939393;
+        border-bottom: .3rem solid #828282;
+
+        &:hover {
+            color: white;
+            background-color: #aaaaaa;
+            border-bottom: .3rem solid #8e8e8e;
+        }
+    }
+
+    .btn-primary {
+        background-color: #2980B9;
+        border-bottom: .3rem solid #165B88;
+
+        &:hover {
+            background-color: #399bdb;
+            border-bottom: .3rem solid #267cb5;
+        }
     }
 </style>

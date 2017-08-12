@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.3
 -- Dumped by pg_dump version 9.6.3
 
--- Started on 2017-07-31 21:08:18
+-- Started on 2017-08-12 15:57:29
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,23 +16,6 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 1 (class 3079 OID 12387)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- TOC entry 2139 (class 0 OID 0)
--- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -40,7 +23,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 185 (class 1259 OID 16396)
+-- TOC entry 186 (class 1259 OID 16396)
 -- Name: accounts; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -58,7 +41,7 @@ CREATE TABLE accounts (
 ALTER TABLE accounts OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 16402)
+-- TOC entry 185 (class 1259 OID 16394)
 -- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -73,8 +56,8 @@ CREATE SEQUENCE accounts_id_seq
 ALTER TABLE accounts_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2140 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2145 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -82,7 +65,7 @@ ALTER SEQUENCE accounts_id_seq OWNED BY accounts.id;
 
 
 --
--- TOC entry 187 (class 1259 OID 16409)
+-- TOC entry 187 (class 1259 OID 16405)
 -- Name: activation_codes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -95,7 +78,47 @@ CREATE TABLE activation_codes (
 ALTER TABLE activation_codes OWNER TO postgres;
 
 --
--- TOC entry 2006 (class 2604 OID 16404)
+-- TOC entry 189 (class 1259 OID 16432)
+-- Name: news; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE news (
+    id integer NOT NULL,
+    title character varying(100) NOT NULL,
+    content text NOT NULL,
+    by integer NOT NULL,
+    at time with time zone NOT NULL
+);
+
+
+ALTER TABLE news OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 16430)
+-- Name: news_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE news_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE news_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2146 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE news_id_seq OWNED BY news.id;
+
+
+--
+-- TOC entry 2013 (class 2604 OID 16399)
 -- Name: accounts id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -103,36 +126,15 @@ ALTER TABLE ONLY accounts ALTER COLUMN id SET DEFAULT nextval('accounts_id_seq':
 
 
 --
--- TOC entry 2130 (class 0 OID 16396)
--- Dependencies: 185
--- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: postgres
+-- TOC entry 2014 (class 2604 OID 16435)
+-- Name: news id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-COPY accounts (id, email, username, password, creation, level, activated) FROM stdin;
-\.
+ALTER TABLE ONLY news ALTER COLUMN id SET DEFAULT nextval('news_id_seq'::regclass);
 
 
 --
--- TOC entry 2141 (class 0 OID 0)
--- Dependencies: 186
--- Name: accounts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('accounts_id_seq', 5, true);
-
-
---
--- TOC entry 2132 (class 0 OID 16409)
--- Dependencies: 187
--- Data for Name: activation_codes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY activation_codes (accountid, code) FROM stdin;
-\.
-
-
---
--- TOC entry 2008 (class 2606 OID 16406)
+-- TOC entry 2016 (class 2606 OID 16404)
 -- Name: accounts accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -141,7 +143,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- TOC entry 2012 (class 2606 OID 16413)
+-- TOC entry 2020 (class 2606 OID 16409)
 -- Name: activation_codes activation_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -150,7 +152,16 @@ ALTER TABLE ONLY activation_codes
 
 
 --
--- TOC entry 2010 (class 2606 OID 16408)
+-- TOC entry 2022 (class 2606 OID 16440)
+-- Name: news news_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY news
+    ADD CONSTRAINT news_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2018 (class 2606 OID 16429)
 -- Name: accounts user; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -158,7 +169,7 @@ ALTER TABLE ONLY accounts
     ADD CONSTRAINT "user" UNIQUE (email, username);
 
 
--- Completed on 2017-07-31 21:08:18
+-- Completed on 2017-08-12 15:57:29
 
 --
 -- PostgreSQL database dump complete

@@ -8,7 +8,9 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 
-Vue.config.productionTip = false;
+import Account from '@/services/account.service';
+
+Vue.config.productionTip = true;
 
 import Sidebar from '@/components/core/sidebar/Sidebar';
 import Mainview from '@/components/core/mainview/Mainview';
@@ -19,11 +21,13 @@ import Modals from '@/components/modals/Modals';
 import Vodal from '@/components/modals/vodal';
 import Ladda from 'vue-ladda'
 import VeeValidate from 'vee-validate';
+import VueCkEditor from 'vue-ckeditor2';
 
 // Libraries
 Vue.use(VeeValidate);
 Vue.component(Vodal.name, Vodal);
 Vue.component('ladda', Ladda);
+Vue.component('ckeditor', VueCkEditor);
 
 // Main components
 Vue.component(Sidebar.name, Sidebar);
@@ -32,9 +36,13 @@ Vue.component(Card.name, Card);
 Vue.component(ComponentSelector.name, ComponentSelector);
 Vue.component(Modals.name, Modals);
 
-new Vue({
-    el: '#app',
-    router,
-    template: '<App/>',
-    components: { App },
+Promise.all([
+    Account.init()
+]).then(() => {
+    new Vue({
+        el: '#app',
+        router,
+        template: '<App/>',
+        components: { App },
+    });
 });

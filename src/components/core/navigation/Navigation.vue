@@ -21,13 +21,13 @@
         data() {
             return {
                 routes: [
-                    new Route("/", "Home", "home"),
+                    new Route("/home", "Home", "home"),
                     new Route("/tournaments", "Tournaments", "trophy"),
                     new Route("/players", "Players", "user"),
                     new Route("/teams", "Teams", "users"),
                     new Route("/admin", "Admin", "star", 9)
                 ],
-                level: 0
+                level: Account.level
             };
         },
         mounted() {

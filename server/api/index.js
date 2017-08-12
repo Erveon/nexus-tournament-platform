@@ -7,5 +7,6 @@ router.get('/', (req, res) => {
 
 router.use('/auth', require('./auth.api'));
 router.use('/account', require('./account.api'));
+router.use('/news', require('./news.api'));
 
 module.exports = router;

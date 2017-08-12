@@ -1,62 +1,29 @@
 <template>
     <div>
-        <announcement-item v-for="item in news" :key="item.title" :title="item.title" :by="item.by" :at="item.at">
-            {{ item.content }}
+        <announcement-item v-for="item in posts" :key="item.id" :title="item.title" :by="item.by" :at="item.at" :id="item.id">
+            <div v-html="item.content"></div>
         </announcement-item>
     </div>
 </template>
 
 <script>
     import AnnouncementItem from './AnnouncementItem';
+    import axios from 'axios';
     import moment from 'moment';
 
     export default {
         name: "announcements",
         data() {
-            return {
-                news: [
-                    {
-                        title: 'Everyone\'s fired',
-                        by: 'kerrytaz',
-                        at: moment(),
-                        content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-                    },
-                    {
-                        title: 'New website',
-                        by: 'Erveon',
-                        at: moment(),
-                        content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione 
-                            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
-                            vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?`
-                    },
-                    {
-                        title: 'You\'re a cunt',
-                        by: 'Panda',
-                        at: moment(),
-                        content: `quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-                    }
-                ]
-            };
+            return { posts: [] };
+        },
+        mounted() {
+            this.getPosts(0, 5);
         },
         methods: {
-            truncate(content, length) {
-                return content.substring(0, length);
-            }
+            getPosts(page, amount) {
+                axios.get(`/api/news/list/${page}/${amount}`)
+                .then(response => this.posts = response.data);
+            },
         },
         components: {
             'announcement-item': AnnouncementItem

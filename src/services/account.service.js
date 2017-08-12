@@ -23,7 +23,7 @@ Account.init = () => {
 
 Account.load = () => {
     return new Promise((resolve, reject) => {
-        axios.get(`api/account`)
+        axios.get(`/api/account`)
         .then(response => {
             let account = response.data;
             Account.username = account.username;

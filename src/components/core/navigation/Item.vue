@@ -1,6 +1,6 @@
 <template>
     <li>
-        <router-link :to="route.route" exact>
+        <router-link :to="route.route">
             <i :class="['fa', icon]" aria-hidden="true"></i>
             {{ route.label }}
         </router-link>

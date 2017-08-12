@@ -1,43 +1,51 @@
 <template>
     <div class="post-wrapper">
-        <card>
+        <card v-if="post">
             <div class="top">
                 <div class="title">{{ post.title }}</div>
-                <div class="info">by {{ post.by }} on {{ post.at.format("MMMM Do YYYY") }}</div>
+                <div class="info">by {{ post.by }} on {{ time(post.at) }}</div>
             </div>
             <hr />
-            <div class="content">
-                {{ post.content }}
-            </div>
-            <a class="previous">Previous</a>
-            <a class="next pull-right">Next</a>
+            <div class="content" v-html="post.content"></div>
+            <!--<a class="previous">Previous</a>
+            <a class="next pull-right">Next</a>-->
         </card>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
     import moment from 'moment';
 
     export default {
         name: 'announcement-post',
+        mounted() {
+            let slug = this.$route.params.post;
+            let id = slug.split('-')[0];
+            this.getPost(id);
+        },
+        methods: {
+            getPost(id) {
+                axios.get(`/api/news/${id}`)
+                .then(res => this.post = res.data);
+            },
+            time(at) {
+                return moment(at).format("MMMM Do YYYY");
+            }
+        },
         data() {
             return { 
-                post: {
-                    title: 'This is an example announcement',
-                    by: 'Erveon',
-                    at: moment(),
-                    content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione 
-                            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
-                            vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?`
-                }
+                post: null
             };
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .dark-theme hr {
+        border-top: 1px solid #3e485b !important;
+    }
+
     .top {
         text-align: center;
 
