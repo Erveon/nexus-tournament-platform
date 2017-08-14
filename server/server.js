@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const database = require('./persistence/database.manager');
@@ -26,6 +27,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 passport.use(jwtStrategy);
 
@@ -33,6 +35,10 @@ passport.use(jwtStrategy);
 app.use('/api', api);
 app.set('port', 3000);
 app.use(passport.initialize());
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 server.listen(3000, () => {
     console.log(`API running on localhost:3000`);
