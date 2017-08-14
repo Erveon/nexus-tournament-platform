@@ -1,12 +1,19 @@
 <template>
     <div id="app">
-        <sidebar></sidebar>
-        <main-view></main-view>
-        <modals></modals>
+        <div v-if="canaccess">
+            <sidebar></sidebar>
+            <main-view></main-view>
+            <modals></modals>
+        </div>
+        <div v-else>
+            <password-page></password-page>
+        </div>
     </div>
 </template>
 
 <script>
+    import PasswordPage from '@/components/pages/PasswordPage';
+    import Tester from '@/services/tester.service';
     import axios from 'axios';
 
     export default {
@@ -14,10 +21,18 @@
         beforeMount() {
             //this.warn();
         },
+        data() {
+            return {
+                canaccess: Tester.authenticated
+            }
+        },
         methods: {
             warn() {
                 console.log("%cStop! Don't paste anything in here under any circumstances. People may be trying to steal your account.", "font-family: 'open sans', sans-serif; background: red; color: yellow; font-size: x-large;");
             }
+        },
+        components: {
+            "password-page": PasswordPage
         }
     };
 </script>

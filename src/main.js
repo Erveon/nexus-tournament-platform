@@ -9,6 +9,7 @@ import App from './App';
 import router from './router';
 
 import Account from '@/services/account.service';
+import Tester from '@/services/tester.service';
 
 Vue.config.productionTip = true;
 
@@ -37,6 +38,7 @@ Vue.component(ComponentSelector.name, ComponentSelector);
 Vue.component(Modals.name, Modals);
 
 Promise.all([
+    Tester.init(),
     Account.init()
 ]).then(() => {
     new Vue({
