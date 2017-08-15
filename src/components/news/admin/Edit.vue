@@ -1,18 +1,18 @@
 <template>
-    <card id="announcement-edit" v-if="post">
+    <card id="announcement-edit" v-if="loaded">
         <form>
             <div class="row">
                 <label for="announcement-title">Title</label>
-                <input name="title" type="text" class="u-full-width" placeholder="Title" id="announcement-title" :value="post.title" />
+                <input name="title" type="text" class="u-full-width" placeholder="Title" id="announcement-title" v-model="title" />
             </div>
             <div class="row">
-                <label for="announcement-body">Body</label>
-                <ckeditor name="body" class="u-full-width" id="announcement-body" :value="post.content"></ckeditor>
+                <label for="announcementbody">Body</label>
+                <textarea name="body" class="u-full-width ckeditor" id="announcementbody" v-model="content"></textarea>
             </div>
             <div class="row buttons">
                 <div class="pull-right">
-                    <a href="cancel" class="cancel">Cancel</a>
-                    <a href="submit" class="btn btn-primary">Save changes</a>
+                    <a href="cancel" @click.prevent="cancel()" class="cancel">Cancel</a>
+                    <a href="submit" @click.prevent="submit()" class="btn btn-primary">Save changes</a>
                 </div>
             </div>
         </form>
@@ -22,25 +22,64 @@
 <script>
     import axios from 'axios';
     import moment from 'moment';
+    import $ from 'jquery';
 
     export default {
         name: "news-edit",
+        data() {
+            return { 
+                title: '',
+                content: '',
+                id: undefined,
+                loaded: false
+            };
+        },
         mounted() {
-            let id = this.$route.params.id;
-            this.getPost(id);
+            this.id = this.$route.params.id;
+            this.load().then(() => {
+                CKEDITOR.replace('announcementbody');
+            });
+        },
+        beforeRouteLeave(to, from, next) {
+            for(name in CKEDITOR.instances)
+                CKEDITOR.instances[name].destroy(true);
+            next();
         },
         methods: {
             getPost(id) {
-                axios.get(`/api/news/${id}`)
+                return axios.get(`/api/news/${id}`)
                 .then(res => {
-                    this.post = res.data;
+                    this.title = res.data.title;
+                    this.content = res.data.content;
+                });
+            },
+            load() {
+                return new Promise((resolve, reject) => {
+                    if(this.id) {
+                        this.getPost(this.id)
+                        .then(() => {
+                            this.loaded = true;
+                            resolve();
+                        });
+                    } else {
+                        this.loaded = true;
+                        resolve();
+                    }
+                });
+            },
+            cancel() {
+                this.$router.push('/admin/news');
+            },
+            submit() {
+                let url = this.id ? `/api/news/${this.id}` : `/api/news/`;
+                this.content = CKEDITOR.instances.announcementbody.getData();
+                axios.post(url, {
+                    title: this.title,
+                    content: this.content
+                }).then(() => {
+                    this.cancel();
                 });
             }
-        },
-        data() {
-            return { 
-                post: null
-            };
         }
     }
 </script>

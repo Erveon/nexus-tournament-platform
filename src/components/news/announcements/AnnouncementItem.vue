@@ -7,7 +7,7 @@
         </div>
         <div class="content" :class="{ expanded: expanded }">
             <slot></slot>
-            <div @click.prevent="expand()" class="readmore">Read more</div>
+            <div @click.prevent="toggle()" class="readmore">{{ read }}</div>
         </div>
     </card>
 </template>
@@ -25,12 +25,14 @@
         name: "news-item",
         data() {
             return {
-                expanded: false
+                expanded: false,
+                read: 'Read more'
             };
         },
         methods: {
-            expand() {
-                this.expanded = true;
+            toggle() {
+                this.expanded = !this.expanded;
+                this.read = this.expanded ? 'Read less' : 'Read more';
             },
             time(at) {
                 return moment(at);
@@ -49,16 +51,18 @@
 
 <style lang="scss" scoped>
     .content {
+        margin: 0;
         max-height: 5vh;
         overflow: hidden;
     }
 
     .content.expanded {
         max-height: 1000px;
-        transition: max-height 1s ease-in-out;
 
         .readmore {
-            display: none;
+            position: relative;
+            line-height: normal;
+            background-color: initial;
         }
     }
 
@@ -66,16 +70,16 @@
         cursor: pointer;
         text-align: center;
         line-height: 5rem;
-        opacity: .9;
+        opacity: .7;
         position: absolute;
-        bottom: 1px;
+        bottom: 0;
         left: 0;
         width: 100%;
-        background-color: white;
+        background-color: #fcfcfc;
     }
 
     .dark-theme .readmore {
-        background-color: #1B2936;
+        background-color: #16222d;
     }
 
     .news-item {

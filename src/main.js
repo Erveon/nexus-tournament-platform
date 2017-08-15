@@ -22,13 +22,11 @@ import Modals from '@/components/modals/Modals';
 import Vodal from '@/components/modals/vodal';
 import Ladda from 'vue-ladda'
 import VeeValidate from 'vee-validate';
-import VueCkEditor from 'vue-ckeditor2';
 
 // Libraries
 Vue.use(VeeValidate);
 Vue.component(Vodal.name, Vodal);
 Vue.component('ladda', Ladda);
-Vue.component('ckeditor', VueCkEditor);
 
 // Main components
 Vue.component(Sidebar.name, Sidebar);

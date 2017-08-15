@@ -11,8 +11,15 @@
 </template>
 
 <script>
+    import account from '@/services/account.service';
+
     export default {
-        name: "admin"
+        name: "admin",
+        beforeRouteEnter(to, from, next) {
+            if(account.authenticated && account.level >= 6) {
+                next();
+            }
+        },
     }
 </script>
 
