@@ -3,7 +3,7 @@
         <div class="password row center">
             <h3>
                 <span>Nexus Gaming Platform</span>
-                <span class="small">Alpha v0.1.6</span>
+                <span class="small">{{ version }}</span>
             </h3>
             <input type="password" v-model="pw" placeholder="Password" />
             <button class="button-primary" @click.prevent="auth">Submit</button>
@@ -12,12 +12,16 @@
 </template>
 
 <script>
+    import app from '@/services/app.service';
     import tester from '@/services/tester.service';
 
     export default {
         name: "password-page",
         data() {
-            return { pw: '' }
+            return { 
+                pw: '',
+                version: app.version
+            }
         },
         methods: {
             auth() {
