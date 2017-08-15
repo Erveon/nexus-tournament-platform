@@ -36,7 +36,7 @@ Database.getPost = (id) => {
 Database.createPost = (title, content, by) => {
     return new Promise((resolve, reject) => {
         database.query(`INSERT INTO news(title, content, by, at) 
-            VALUES ($1, $2, $3, current_timestamp) RETURNING id`,
+            VALUES ($1, $2, $3, current_time) RETURNING id`,
             [title, content, by])
         .then(res => {
             resolve(res.rows[0].id);

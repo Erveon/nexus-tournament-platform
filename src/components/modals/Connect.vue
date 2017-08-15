@@ -192,7 +192,6 @@
         width: 100%;
         text-align: center;
         list-style-type: none;
-        height: 5rem;
         line-height: 5rem;
         padding-bottom: 1rem;
         border-bottom: 2px solid #eee;

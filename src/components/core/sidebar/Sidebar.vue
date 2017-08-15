@@ -26,7 +26,7 @@
     #sidebar {
         z-index: 100;
         width: 25rem;
-        position: absolute;
+        position: fixed;
         height: 100%;
         background-color: #1B2936;
         margin-left: 0;

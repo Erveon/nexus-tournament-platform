@@ -38,10 +38,9 @@
 </script>
 
 <style lang="scss">
-    #app {
+    body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        height: 100%;
         color: #2c3e50;
         background-color: #F3F3F4;
     }
@@ -60,7 +59,7 @@
         }
     }
 
-    .dark-theme #app {
+    body.dark-theme {
         background-color: #121E29;
     }
 
