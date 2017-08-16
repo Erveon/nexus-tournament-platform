@@ -8,6 +8,7 @@ import Activate from '@/components/account/Activate';
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 
 // Administration
+import UserPage from '@/components/pages/UserPage';
 import AdminPage from '@/components/pages/AdminPage';
 import NewsAdmin from '@/components/news/admin/List';
 import EditNews from '@/components/news/admin/Edit';
@@ -32,6 +33,7 @@ export default new Router({
                 { path: 'news/create', name: 'Add News', component: EditNews },
                 { path: 'news/:id', name: 'Edit News', component: EditNews }
             ]
-        }
+        },
+        { path: '/user/:username', name: 'User', component: UserPage },
     ],
 });

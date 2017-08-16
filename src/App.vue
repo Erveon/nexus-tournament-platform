@@ -100,4 +100,14 @@
             border-bottom: .3rem solid #267cb5;
         }
     }
+
+    .userlink {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .dark-theme .userlink {
+        color: white;
+    }
 </style>

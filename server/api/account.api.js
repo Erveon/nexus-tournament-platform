@@ -12,6 +12,13 @@ router.get('/', auth(), async (req, res) => {
     });
 });
 
+router.get('/:username', async (req, res) => {
+    let who = req.params.username;
+    res.json({
+        username: who
+    });
+});
+
 function auth() {
     return passport.authenticate('jwt', { session: false});
 };

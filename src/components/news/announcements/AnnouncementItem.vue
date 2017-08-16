@@ -2,7 +2,7 @@
     <card class="news-item">
         <div class="top">
             <router-link :to='fullPost()' class="title">{{ title }}</router-link>
-            <span class="by">by {{ by }}</span>
+            <span class="by">by <router-link :to="'/user/' + by" class="userlink">{{ by }}</router-link></span>
             <span class="at">{{ time(at).format("MMMM Do YYYY") }}</span>
         </div>
         <div class="content" :class="{ expanded: expanded }">

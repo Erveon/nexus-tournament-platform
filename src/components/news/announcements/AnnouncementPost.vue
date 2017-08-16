@@ -3,7 +3,7 @@
         <card v-if="post">
             <div class="top">
                 <div class="title">{{ post.title }}</div>
-                <div class="info">by {{ post.by }} on {{ time(post.at) }}</div>
+                <div class="info">by <router-link :to="'/user/' + post.by" class="userlink">{{ post.by }}</router-link> on {{ time(post.at) }}</div>
             </div>
             <hr />
             <div class="content" v-html="post.content"></div>

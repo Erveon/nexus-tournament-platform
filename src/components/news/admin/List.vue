@@ -11,7 +11,7 @@
                     <span class="by">by {{ item.by }} </span>
                     <span class="at">{{ time(item.at) }}</span>
                     <div class="options pull-right">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i @click.prevent="remove(item)" class="fa fa-trash" aria-hidden="true"></i>
                     </div>
                 </router-link>
             </li>
@@ -22,6 +22,7 @@
 <script>
     import axios from 'axios';
     import moment from 'moment';
+    import _ from 'underscore';
 
     export default {
         name: "news-admin",
@@ -29,7 +30,7 @@
             return { posts: [] };
         },
         created() {
-            this.getPosts(0, 5);
+            this.getPosts(0, 20);
         },
         methods: {
             getPosts(page, amount) {
@@ -41,6 +42,10 @@
             },
             time(at) {
                 return moment(at).format("lll");
+            },
+            remove(item) {
+                axios.delete(`/api/news/${item.id}`)
+                .then(() => this.posts = _.without(this.posts, item));
             }
         },
     }

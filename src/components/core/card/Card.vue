@@ -1,7 +1,7 @@
 <template>
     <div>
         <card-title>{{ title }}</card-title>
-        <div :class="{ card: frame }" :style="'padding: '+ padding +'rem'">
+        <div :class="{ card: frame, background: bgcolor }" :style="'padding: '+ padding +'rem'">
             <slot></slot>
         </div>
     </div>
@@ -14,7 +14,8 @@
         props: {
             title: { type: String },
             frame: { type: Boolean, default: true },
-            padding: { type: Number, default: 2 }
+            padding: { type: Number, default: 2 },
+            bgcolor: { type: Boolean, default: true }
         },
         name: "card",
         components: {
@@ -29,14 +30,20 @@
 <style lang="scss" scoped>
     .card {
         color: #444444;
-        background-color: white;
         border: 1px solid #E4E2E2;
         margin-bottom: 2rem;
+
+        &.background {
+            background-color: white;
+        }
     }
 
     .dark-theme .card {
         color: white;
-        background-color: #1B2936;
         border: 1px solid #272e3d;
+
+        &.background {
+            background-color: #1B2936;
+        }
     }
 </style>

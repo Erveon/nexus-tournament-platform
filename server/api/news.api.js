@@ -44,6 +44,19 @@ router.post('/:id', auth(), async (req, res) => {
     }
 });
 
+router.delete('/:id', auth(), async (req, res) => {
+    let id = req.params.id;
+    let user = req.user;
+    if(!user) {
+        res.sendStatus(401);
+    } else if(user.level < 6) {
+        res.sendStatus(403);
+    } else {
+        newsdb.removePost(id)
+        .then(() => res.sendStatus(200));
+    }
+});
+
 function auth() {
     return passport.authenticate('jwt', { session: false});
 };

@@ -57,7 +57,7 @@ Database.editPost = (id, title, content) => {
 };
 
 Database.removePost = (id) => {
-    database.query(`DELETE FROM news WHERE id = $1`, [id]);
+    return database.query(`DELETE FROM news WHERE id = $1`, [id]);
 }
 
 module.exports = Database;
