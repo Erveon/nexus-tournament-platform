@@ -3,7 +3,7 @@
         <div class="top">
             <router-link :to='fullPost()' class="title">{{ title }}</router-link>
             <span class="by">by <router-link :to="'/user/' + by" class="userlink">{{ by }}</router-link></span>
-            <span class="at">{{ time(at).format("MMMM Do YYYY") }}</span>
+            <span class="at">{{ getTime(at) }}</span>
         </div>
         <div class="content" :class="{ expanded: expanded }">
             <slot></slot>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import moment from 'moment';
+    import time from '@/services/time.service';
 
     export default {
         props: {
@@ -34,8 +34,8 @@
                 this.expanded = !this.expanded;
                 this.read = this.expanded ? 'Read less' : 'Read more';
             },
-            time(at) {
-                return moment(at);
+            getTime(at) {
+                return time.format(at);
             },
             fullPost() {
                 let title = this.title
@@ -52,7 +52,7 @@
 <style lang="scss" scoped>
     .content {
         margin: 0;
-        max-height: 5vh;
+        max-height: 15rem;
         overflow: hidden;
     }
 

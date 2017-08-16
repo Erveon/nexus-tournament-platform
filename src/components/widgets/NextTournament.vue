@@ -5,7 +5,7 @@
                 <p class="title">
                     {{ title }}
                 </p>
-                <div class="time pull-right">
+                <div class="time">
                     <span v-if="days > 0">{{days}}d</span>
                     <span v-if="hours > 0">{{hours}}h</span> 
                     <span v-if="minutes > 0">{{minutes}}m</span>
@@ -28,8 +28,8 @@ export default {
     data() {
         return {
             now: Math.trunc((new Date()).getTime() / 1000),
-            date: Math.trunc(Date.parse("August 8, 2017 7:00:00 PM EDT") / 1000),
-            title: "Rocket Leauge 1v1 #22"
+            date: Math.trunc(Date.parse("May 3, 2018 12:00:00 AM GMT+2") / 1000),
+            title: "Erveon's Birthday"
         }
     },
     computed: {
@@ -54,7 +54,7 @@ export default {
         cursor: pointer;
         padding: 2rem;
         color: white;
-        font-size: 2rem;
+        font-size: 2.2rem;
         position: relative;
         background-image: url(https://s3-us-west-1.amazonaws.com/patreon-reward-images/1300113.jpeg);
         background-position: bottom right;
@@ -62,24 +62,19 @@ export default {
         .info {
             text-shadow: 0 0 3px black;
             display: block;
+            text-align: center;
 
             .title {
-                display: inline-block;
+                display: block;
                 font-weight: bold;
                 margin: 0;
             }
 
             .time {
+                display: block;
                 font-weight: lighter;
             }
         }
-        .signup {
-            text-decoration: none;
-            background-color: #2980B9;
-            color: white;
-            font-size: 1.8rem;
-            padding: .1rem 2rem;
-            text-transform: capitalize;
-        }
+        
     }
 </style>

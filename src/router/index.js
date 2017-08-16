@@ -3,16 +3,21 @@ import Router from 'vue-router';
 
 import HomePage from '@/components/pages/HomePage';
 import TournamentsPage from '@/components/pages/TournamentsPage';
-import Activate from '@/components/account/Activate';
+import ActivatePage from '@/components/pages/ActivatePage';
 
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 
 // Administration
-import UserPage from '@/components/pages/UserPage';
 import AdminPage from '@/components/pages/AdminPage';
 import NewsAdmin from '@/components/news/admin/List';
 import EditNews from '@/components/news/admin/Edit';
 import AdminDashboard from '@/components/admin/AdminDashboard';
+
+// User
+import UserPage from '@/components/pages/UserPage';
+import UserProfile from '@/components/user/UserProfile';
+import UserTournaments from '@/components/user/UserTournaments';
+import UserTeams from '@/components/user/UserTeams';
 
 Vue.use(Router);
 
@@ -23,7 +28,7 @@ export default new Router({
         { path: '/', redirect: { name: 'Home' } },
         { path: '/home', name: 'Home', component: HomePage },
         { path: '/tournaments', name: 'Tournaments', component: TournamentsPage },
-        { path: '/activate', name: 'Activate', component: Activate },
+        { path: '/activate', name: 'Activate', component: ActivatePage },
         { path: '/announcement/:post', name: 'Announcement', component: AnnouncementPost },
         { path: '/admin', component: AdminPage,
             children: [
@@ -34,6 +39,13 @@ export default new Router({
                 { path: 'news/:id', name: 'Edit News', component: EditNews }
             ]
         },
-        { path: '/user/:username', name: 'User', component: UserPage },
+        { path: '/user/:username', component: UserPage,
+            children: [
+                { path: '', redirect: { name: 'User Profile' } },
+                { path: 'profile', name: 'User Profile', component: UserProfile },
+                { path: 'tournaments', name: 'User Tournaments', component: UserTournaments },
+                { path: 'teams', name: 'User Teams', component: UserTeams }
+            ]
+        },
     ],
 });

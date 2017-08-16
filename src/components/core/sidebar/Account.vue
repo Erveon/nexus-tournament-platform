@@ -1,9 +1,9 @@
 <template>
     <div id="nav-account">
         <template v-if="authenticated">
-            <div class="info block">
+            <router-link :to="'/user/' + getUsername()" class="info block">
                 {{ getUsername() }}
-            </div>
+            </router-link>
         </template>
         <template v-else>
             <a href="#" @click.prevent="showConnect" class="connect block">
@@ -45,6 +45,7 @@
         display: block;
 
         .block {
+            text-decoration: none;
             background-color: #2980B9;
             display: block;
             height: 5em;

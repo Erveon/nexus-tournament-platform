@@ -38,9 +38,25 @@
         cursor: pointer;
         font-size: 2.2rem;
         color: #444444;
+        background-color: transparent;
+        text-align: center;
+        transition: .4s;
+
+        &:hover {
+            background-color: #F0F5F9;
+        }
+
+        i {
+            display: inline-block;
+            width: 4rem;
+        }
     }
 
     .dark-theme a {
         color: white;
+
+        &:hover {
+            background-color: #272E3D;
+        }
     }
 </style>

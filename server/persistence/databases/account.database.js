@@ -16,6 +16,20 @@ Database.getAccountByEmail = (email) => {
     });
 };
 
+Database.getAccountByUsername = (username) => {
+    return new Promise((resolve, reject) => {
+        database.query("SELECT * FROM accounts WHERE username = $1", [username])
+        .then(res => {
+            if(res.rows.length === 1) {
+                let account = res.rows[0];
+                resolve(account);
+            } else {
+                resolve(false);
+            }
+        }).catch(reject);
+    });
+};
+
 Database.createAccount = (email, username, securepassword) => {
     return new Promise((resolve, reject) => {
         database.query(`INSERT INTO accounts(email, username, password, creation, level, activated) 

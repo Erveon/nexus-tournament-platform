@@ -28,4 +28,8 @@
     };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+    .home {
+        padding: 3rem 5rem;
+    }
+</style>

@@ -28,5 +28,8 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .tournaments {
+        padding: 3rem 5rem;
+    }
 </style>

@@ -52,13 +52,14 @@
             border-bottom: 3px solid transparent;
             background-color: transparent;
             transition: .2s;
+            border-radius: 3px;
 
             .card-title {
                 padding: 0 .8rem;
             }
 
             &.active {
-                border-bottom: 3px solid #165B88;
+                border-bottom: 3px solid #156DAD;
                 background-color: #399BDB;
             
                 .card-title {
@@ -68,7 +69,7 @@
             }
 
             &:hover {
-                border-bottom: 3px solid #165B88;
+                border-bottom: 3px solid #156DAD;
             }
         }
     }

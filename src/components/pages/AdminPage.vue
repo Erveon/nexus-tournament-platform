@@ -25,6 +25,10 @@
 
 <style lang="scss" scoped>
 
+    #admin {
+        padding: 3rem 5rem;
+    }
+
     .dark-theme {
         a {
             color: white !important;

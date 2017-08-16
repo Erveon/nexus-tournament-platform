@@ -1,19 +1,28 @@
 <template>
-    <div v-if="user" class="userpage">
-        <div class="header">
-            <div class="userbar">
-                <span class="picture"></span>
-                <span class="username">{{ user.username }}</span>
+    <div>
+        <div v-if="user" class="userpage">
+            <div class="header">
+                <div class="bannerimg">
+                    <img v-if="hasBackground" src="./images/bannerimg.png" />
+                </div>
             </div>
+            <div class="usernav-wrapper">
+                <div class="usernav">
+                    <div class="info">
+                        <span class="picture"></span>
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                    <ul>   
+                        <li><router-link :to="'/user/' + user.username + '/profile'">Profile</router-link></li>
+                        <li><router-link :to="'/user/' + user.username + '/tournaments'">Tournaments</router-link></li>
+                        <li><router-link :to="'/user/' + user.username + '/teams'">Teams</router-link></li>
+                    </ul>
+                </div>
+            </div>
+            <router-view></router-view>
         </div>
-        <div class="usernav">
-            <ul>   
-                <li><router-link class="active" :to="'/user/' + user.username + '/profile'">Profile</router-link></li>
-                <li><router-link :to="'/user/' + user.username + '/tournaments'">Tournaments</router-link></li>
-                <li><router-link :to="'/user/' + user.username + '/teams'">Teams</router-link></li>
-            </ul>
-        </div>
-        <div class="page">
+        <div v-if="notFound" class="notfound">
+            <span>User '{{ $route.params.username }}' not found :(</span>
         </div>
     </div>
 </template>
@@ -25,7 +34,9 @@
         name: 'user',
         data() {
             return {
-                user: undefined
+                hasBackground: false,
+                user: null,
+                notFound: false
             };
         },
         beforeMount() {
@@ -35,86 +46,177 @@
         methods: {
             fetchUser(user) {
                 axios.get(`/api/account/${user}`)
-                .then(res => {
-                    this.user = res.data;
-                });
+                .then(res => this.user = res.data)
+                .catch(err => this.notFound = true);
+            }
+        },
+        watch: {
+            '$route.params.username'(newname, oldname) {
+                this.fetchUser(newname);
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .notfound {
+        text-align: center;
+        margin-top: 5rem;
+        font-size: 3rem;
+    }
+
+    .dark-theme .notfound {
+        color: white;
+    }
+
     .userpage {
-        margin: 0 auto;
-        max-width: 1100px;
-        
+
         .header {
-            background-image: url('./pattern.png');
-            background-size: 130px;
-            height: 15vh;
+            transition: .2s;
+            overflow: auto;
             position: relative;
+            height: 300px;
+            overflow: hidden;
 
-            .userbar {
-                position: absolute;
-                bottom: 0;
-                color: white;
-                background-color: rgba(0, 0, 0, 0.5);
+            &:before {
+                content: "";
+                background-color: #556b7f;
                 width: 100%;
+                height: 100%;
+                z-index: -2;
+                position: absolute;
+            }
 
-                .picture {
-                    background-image: url('./sociallogo.jpg');
-                    background-size: cover;
-                    border: 2px solid #1B2936;
-                    margin-left: 2rem;
-                    display: inline-block;
-                    position: absolute;
-                    bottom: .8rem;
-                    height: 10rem;
-                    width: 10rem;
-                    background-color: white;
-                }
-
-                .username {
-                    font-size: 4rem;
-                    margin-left: 14rem;
-                }
+            .bannerimg img {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: -2;
+                opacity: .5;
             }
         }
 
-        .usernav {
-            ul {
-                list-style-type: none;
-                background-color: #1B2936;
-                margin: 0;
-                font-size: 0;
+        .usernav-wrapper {
+            border: 1px solid #E4E2E2;
+            list-style-type: none;
+            background-color: white;
+            position: relative;
+            padding: 0 3rem;
 
-                li {
-                    display: inline-block;
-                    margin: 0;
+            .usernav {
+                max-width: 1200px;
+                margin: 0 auto;
+            
+                .info {
+                    position: absolute;
+                    bottom: 0;
 
-                    a {
-                        display: inline-block;
-                        height: 6rem;
-                        line-height: 6rem;
-                        padding: 0 2.4rem;
-                        font-size: 1.8rem;
+                    .picture {
+                        background-image: url('./images/sociallogo.jpg');
+                        background-size: cover;
+                        margin: 4rem auto 0 auto;
+                        border-radius: 10px;
+                        display: block;
+                        height: 12rem;
+                        width: 12rem;
+                        position: absolute;
+                        bottom: .8rem;
+                        left: 0;
+                    }
+
+                    .username {
+                        position: relative;
+                        left: 15rem;
+                        bottom: 6rem;
+                        font-size: 5rem;
                         color: white;
-                        text-decoration: none;
-                        background-color: transparent;
-                        transition: .4s;
+                        text-shadow: 2px 2px 4px #333;
+                    }
+                }
 
-                        &.active, &:hover {
-                            background-color: #272e3d;
+                ul {
+                    margin: 0 0 0 15rem;
+                    font-size: 0;
+
+                    li {
+                        display: inline-block;
+                        margin: 0;
+
+                        a {
+                            display: inline-block;
+                            height: 6rem;
+                            line-height: 6rem;
+                            padding: 0 2.4rem;
+                            font-size: 1.8rem;
+                            color: black;
+                            text-decoration: none;
+                            background-color: transparent;
+                            transition: .4s;
+
+                            &.active, &:hover {
+                                background-color: #F0F5F9;
+                            }
                         }
                     }
                 }
+
+            }
+        }
+    }
+
+    .dark-theme .userpage {
+
+        .usernav-wrapper {
+            border: 1px solid #272e3d !important;
+            background-color: #1B2936;
+
+            a {
+                color: white !important;
+
+                &.active, &:hover {
+                    background-color: #272e3d !important;
+                }
             }
         }
 
-        .page {
-            margin-top: 1vh;
-            height: 20vh;
-            background-color: #1B2936;
+        .header:before {
+            background-color: #0b141c !important;
+        }
+    }
+
+    @media(max-width: 1200px) {
+        .userpage .header {
+            height: 280px;
+        }
+    }
+
+    @media(max-width: 1100px) {
+        .userpage .header {
+            height: 260px;
+        }
+    }
+
+    @media(max-width: 1000px) {
+        .userpage .header {
+            height: 200px;
+        }
+    }
+
+    @media(max-width: 900px) {
+        .userpage .header {
+            height: 160px;
+        }
+    }
+
+    @media(max-width: 800px) {
+        .userpage .header {
+            height: 140px;
+        }
+    }
+
+    @media(max-width: 320px) {
+        .userpage .header {
+            height: 100px;
         }
     }
 </style>

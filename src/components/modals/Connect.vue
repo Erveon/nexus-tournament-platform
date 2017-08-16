@@ -95,12 +95,13 @@
             },
             submit() {
                 this.submitted = true;
-                if(this.errors.length > 0) return;
-                this.inputEnabled(false);
-                if(this.login) {
-                    this.processLogin();
-                } else {
-                    this.processRegister();
+                if(this.errors.length === 0) {
+                    this.inputEnabled(false);
+                    if(this.login) {
+                        this.processLogin();
+                    } else {
+                        this.processRegister();
+                    }
                 }
             },
             processLogin() {
@@ -113,7 +114,7 @@
                 .then(() => this.inputEnabled(true));
             },
             processRegister() {
-                axios.post(`api/auth/register`, {
+                axios.post(`/api/auth/register`, {
                     email: this.email,
                     username: this.username,
                     password: this.password

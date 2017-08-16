@@ -3,7 +3,7 @@
         <card v-if="post">
             <div class="top">
                 <div class="title">{{ post.title }}</div>
-                <div class="info">by <router-link :to="'/user/' + post.by" class="userlink">{{ post.by }}</router-link> on {{ time(post.at) }}</div>
+                <div class="info">by <router-link :to="'/user/' + post.by" class="userlink">{{ post.by }}</router-link> on {{ getTime(post.at) }}</div>
             </div>
             <hr />
             <div class="content" v-html="post.content"></div>
@@ -15,7 +15,7 @@
 
 <script>
     import axios from 'axios';
-    import moment from 'moment';
+    import time from '@/services/time.service';
 
     export default {
         name: 'announcement-post',
@@ -29,8 +29,8 @@
                 axios.get(`/api/news/${id}`)
                 .then(res => this.post = res.data);
             },
-            time(at) {
-                return moment(at).format("MMMM Do YYYY");
+            getTime(at) {
+                return time.format(at);
             }
         },
         data() {
@@ -68,6 +68,7 @@
     }
 
     .post-wrapper {
+        padding: 3rem 5rem;
         margin: 0 auto;
         max-width: 800px;
     }

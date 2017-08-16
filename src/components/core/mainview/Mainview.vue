@@ -29,7 +29,6 @@
         #main-view {
             display: block;
             position: relative;
-            padding: 3rem 5rem;
         }
     }
 

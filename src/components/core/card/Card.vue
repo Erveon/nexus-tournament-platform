@@ -32,6 +32,7 @@
         color: #444444;
         border: 1px solid #E4E2E2;
         margin-bottom: 2rem;
+        border-radius: 3px;
 
         &.background {
             background-color: white;

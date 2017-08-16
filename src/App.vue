@@ -42,7 +42,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
-        background-color: #F3F3F4;
+        background-color: #F0F5F9;
     }
 
     @media(max-width: 800px) {
