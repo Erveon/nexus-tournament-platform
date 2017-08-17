@@ -1,8 +1,10 @@
 <template>
-    <div id="topbar">
-        <sidebar-toggle></sidebar-toggle>
-        <span><router-link class="home-link" to="/">Nexus</router-link> / <strong>{{ breadcrumb }}</strong></span>
-        <theme-toggle class="pull-right"></theme-toggle>
+    <div id="topbar-wrapper">
+        <sidebar-toggle class="sidebar-toggle"></sidebar-toggle>
+        <div id="topbar">
+            <span><router-link class="home-link" to="/">Nexus</router-link> / <strong>{{ breadcrumb }}</strong></span>
+            <theme-toggle class="pull-right"></theme-toggle>
+        </div>
     </div>
 </template>
 
@@ -30,13 +32,22 @@
         color: #2c3e50;
     }
 
-    #topbar {
-        display: block;
-        height: 5rem;
-        padding: 0 5rem;
+    .sidebar-toggle {
+        position: absolute;
+        top: .5rem;
+        margin-left: 1.2rem;
+    }
+
+    #topbar-wrapper {
         background-color: #fff;
         border: 1px solid #E4E2E2;
         line-height: 5rem;
+        display: block;
+        height: 5rem;
+    }
+
+    #topbar {
+        padding: 0 5rem;
     }
 
     #topbar > * {
@@ -44,7 +55,7 @@
     }
 
     .dark-theme {
-        #topbar {
+        #topbar-wrapper {
             color: white;
             background-color: #1B2936;
             border: 1px solid #272e3d;
