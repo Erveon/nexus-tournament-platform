@@ -5,7 +5,7 @@
                 <span>Nexus Gaming Platform</span>
                 <span class="small">{{ version }}</span>
             </h3>
-            <input type="password" v-model="pw" placeholder="Password" />
+            <input type="password" v-model="pw" @keyup.enter="auth" placeholder="Password" />
             <button class="button-primary" @click.prevent="auth">Submit</button>
         </div>
     </div>

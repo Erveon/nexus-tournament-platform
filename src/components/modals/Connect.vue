@@ -95,7 +95,7 @@
             },
             submit() {
                 this.submitted = true;
-                if(this.errors.length === 0) {
+                if(this.errors.length === 0 || this.login) {
                     this.inputEnabled(false);
                     if(this.login) {
                         this.processLogin();
@@ -147,7 +147,7 @@
                     } else {
                         if(!this.login && this.username.length === 0) {
                             username.focus();
-                        } else {
+                        } else if(password) {
                             password.focus();
                         }
                     }

@@ -52,25 +52,18 @@
 <style lang="scss" scoped>
     .content {
         margin: 0;
-        max-height: 15rem;
+        max-height: 12rem;
         overflow: hidden;
     }
 
     .content.expanded {
         max-height: 1000px;
-
-        .readmore {
-            position: relative;
-            line-height: normal;
-            background-color: initial;
-        }
     }
 
     .readmore {
         cursor: pointer;
         text-align: center;
         line-height: 5rem;
-        opacity: .7;
         position: absolute;
         bottom: 0;
         left: 0;

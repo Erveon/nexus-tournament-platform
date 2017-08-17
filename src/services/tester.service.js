@@ -16,8 +16,7 @@ Tester.init = () => {
 
 Tester.authenticate = (pw) => {
     return new Promise((resolve, reject) => {
-        console.log("Auth " + pw);
-        if(pw === '#bankerry') {
+        if(pw === '#kanberry') {
             localStorage.setItem('testerpw', pw);
             Tester.authenticated = true;
         }
