@@ -110,6 +110,7 @@
                 .info {
                     position: absolute;
                     bottom: 0;
+                    width: 0;
 
                     .picture {
                         background-image: url('./images/sociallogo.jpg');

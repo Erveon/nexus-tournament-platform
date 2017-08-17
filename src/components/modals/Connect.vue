@@ -95,7 +95,8 @@
             },
             submit() {
                 this.submitted = true;
-                if(this.errors.length === 0 || this.login) {
+                if(this.login) this.errors.remove('password'); // Remove incorrect password error
+                if(this.errors.items.length === 0) {
                     this.inputEnabled(false);
                     if(this.login) {
                         this.processLogin();

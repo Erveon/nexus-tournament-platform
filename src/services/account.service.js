@@ -42,7 +42,7 @@ Account.setToken = (token) => {
 
 Account.authenticate = (email, password) => {
     return new Promise((resolve, reject) => {
-        axios.post(`api/auth/login`, {
+        axios.post(`/api/auth/login`, {
             email: email,
             password: password
         })
