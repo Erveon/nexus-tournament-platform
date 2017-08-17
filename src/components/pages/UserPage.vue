@@ -13,6 +13,7 @@
                         <span class="username">{{ user.username }}</span>
                     </div>
                     <ul>   
+                        <li><a class="smallname">{{ user.username }}</a></li>
                         <li><router-link :to="'/user/' + user.username + '/profile'">Profile</router-link></li>
                         <li><router-link :to="'/user/' + user.username + '/tournaments'">Tournaments</router-link></li>
                         <li><router-link :to="'/user/' + user.username + '/teams'">Teams</router-link></li>
@@ -63,6 +64,10 @@
         text-align: center;
         margin-top: 5rem;
         font-size: 3rem;
+    }
+
+    .smallname {
+        display: none !important;
     }
 
     .dark-theme .notfound {
@@ -154,7 +159,7 @@
                             background-color: transparent;
                             transition: .4s;
 
-                            &.active, &:hover {
+                            &.active:not(.smallname), &:hover:not(.smallname) {
                                 background-color: #F0F5F9;
                             }
                         }
@@ -166,7 +171,6 @@
     }
 
     .dark-theme .userpage {
-
         .usernav-wrapper {
             border: 1px solid #272e3d !important;
             background-color: #1B2936;
@@ -174,7 +178,7 @@
             a {
                 color: white !important;
 
-                &.active, &:hover {
+                &.active:not(.smallname), &:hover:not(.smallname) {
                     background-color: #272e3d !important;
                 }
             }
@@ -198,8 +202,31 @@
     }
 
     @media(max-width: 1000px) {
-        .userpage .header {
-            height: 200px;
+        .userpage {
+            .header {
+                height: 200px;
+            }
+
+            .info {
+                display: none !important;
+            }
+
+            .usernav-wrapper {
+                padding: 0;
+
+                .usernav ul {
+                    margin: 0 !important;
+
+                    li {
+                        text-align: center;
+                        display: block !important;
+
+                        a {
+                            display: block !important;
+                        }
+                    }
+                }
+            }
         }
     }
 

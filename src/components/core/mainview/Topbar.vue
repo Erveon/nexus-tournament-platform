@@ -69,4 +69,10 @@
             color: white;
         }
     }
+
+    @media(max-width: 900px) {
+        #topbar {
+            padding: 0 0 0 5rem;
+        }
+    }
 </style>
