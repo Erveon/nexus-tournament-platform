@@ -4,7 +4,7 @@ let Database = {};
 
 Database.getAccountByEmail = (email) => {
     return new Promise((resolve, reject) => {
-        database.query("SELECT * FROM accounts WHERE email = $1", [email])
+        database.query("SELECT * FROM accounts WHERE LOWER(email) = LOWER($1)", [email])
         .then(res => {
             if(res.rows.length === 1) {
                 let account = res.rows[0];
@@ -18,7 +18,7 @@ Database.getAccountByEmail = (email) => {
 
 Database.getAccountByUsername = (username) => {
     return new Promise((resolve, reject) => {
-        database.query("SELECT * FROM accounts WHERE username = $1", [username])
+        database.query("SELECT * FROM accounts WHERE LOWER(username) = LOWER($1)", [username])
         .then(res => {
             if(res.rows.length === 1) {
                 let account = res.rows[0];
@@ -107,7 +107,7 @@ Database.activateAccount = (accountid, code) => {
 
 Database.emailExists = (value) => {
     return new Promise((resolve, reject) => {
-        database.query(`SELECT * FROM accounts WHERE email = $1`, [value])
+        database.query(`SELECT * FROM accounts WHERE LOWER(email) = LOWER($1)`, [value])
         .then(res => {
             resolve(res.rows.length !== 0);
         });
@@ -116,7 +116,7 @@ Database.emailExists = (value) => {
 
 Database.usernameExists = (value) => {
     return new Promise((resolve, reject) => {
-        database.query(`SELECT * FROM accounts WHERE username = $1`, [value])
+        database.query(`SELECT * FROM accounts WHERE LOWER(username) = LOWER($1)`, [value])
         .then(res => {
             resolve(res.rows.length !== 0);
         });

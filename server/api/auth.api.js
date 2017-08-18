@@ -6,15 +6,16 @@ const accounts = require('../accounts/account.manager');
 
 router.post('/register', async (req, res) => {
     let post = req.body;
+    let username = post.username.trim().replace(/[^A-Za-z0-9 ]/g, '');
     let emailExists = await accounts.emailExists(post.email);
-    let usernameExists = await accounts.usernameExists(post.username);
+    let usernameExists = await accounts.usernameExists(username);
     if(emailExists || usernameExists) {
         let errors = [];
         if(emailExists) errors.push("email");
         if(usernameExists) errors.push("username");
         res.json({errors: errors});
     } else {
-        let account = await accounts.create(post.email, post.username, post.password);
+        let account = await accounts.create(post.email, username, post.password);
         accounts.createActivationCode(account, req.get('host'));
         res.json({success: true});
     }

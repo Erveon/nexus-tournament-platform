@@ -25,7 +25,8 @@
                     new Route("/tournaments", "Tournaments", "trophy"),
                     new Route("/players", "Players", "user"),
                     new Route("/teams", "Teams", "users"),
-                    new Route("/admin", "Admin", "star", 9)
+                    new Route("/admin", "Admin", "star", 9),
+                    new Route("/about", "About", "info-circle"),
                 ],
                 level: Account.level
             };

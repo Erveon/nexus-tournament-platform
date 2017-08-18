@@ -8,8 +8,8 @@
             <form>
                 <div class="row">
                     <div class="twelve columns">
-                        <label for="email">Email</label>
-                        <input v-model="email" v-validate="'required|email'" class="u-full-width" type="email" name="email" placeholder="Your@email.com" ref="email" id="email" key="email-input">
+                        <label for="email">User</label>
+                        <input v-model="email" v-validate="'required'" class="u-full-width" type="text" name="email" placeholder="User" ref="email" id="email" key="email-input">
                         <span class="error" v-show="submitted && errors.has('email')">{{ errors.first('email') }}</span>
                     </div>
                 </div>

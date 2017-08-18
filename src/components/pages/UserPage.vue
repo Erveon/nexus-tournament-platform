@@ -17,6 +17,7 @@
                         <li><router-link :to="'/user/' + user.username + '/profile'">Profile</router-link></li>
                         <li><router-link :to="'/user/' + user.username + '/tournaments'">Tournaments</router-link></li>
                         <li><router-link :to="'/user/' + user.username + '/teams'">Teams</router-link></li>
+                        <li v-if="isOwnProfile()" class="pull-right"><router-link :to="'/user/' + user.username + '/settings'"><i class="fa fa-cog" aria-hidden="true"></i></router-link></li>
                     </ul>
                 </div>
             </div>
@@ -30,8 +31,10 @@
 
 <script>
     import axios from 'axios';
+    import account from '@/services/account.service';
 
     export default {
+        props: ['username'],
         name: 'user',
         data() {
             return {
@@ -41,18 +44,21 @@
             };
         },
         beforeMount() {
-            let user = this.$route.params.username;
-            this.fetchUser(user);
+            this.fetchUser(this.username);
         },
         methods: {
             fetchUser(user) {
                 axios.get(`/api/account/${user}`)
                 .then(res => this.user = res.data)
                 .catch(err => this.notFound = true);
+            },
+            isOwnProfile() {
+                return account.authenticated && account.username === this.user.username;
             }
         },
         watch: {
             '$route.params.username'(newname, oldname) {
+                this.user = null;
                 this.fetchUser(newname);
             }
         }
@@ -220,6 +226,10 @@
                     li {
                         text-align: center;
                         display: block !important;
+
+                        &.pull-right {
+                            float: none;
+                        }
 
                         a {
                             display: block !important;

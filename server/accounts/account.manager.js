@@ -8,8 +8,13 @@ const settings = require('../../settings/settings');
 
 let Manager = {};
 
-Manager.get = async (email) => {
+Manager.getByEmail = async (email) => {
     let info = await database.getAccountByEmail(email);
+    return new Account(info.id, info.email, info.username, info.password, info.activated, info.level);
+};
+
+Manager.getByUsername = async (username) => {
+    let info = await database.getAccountByUsername(username);
     return new Account(info.id, info.email, info.username, info.password, info.activated, info.level);
 };
 
@@ -34,11 +39,21 @@ Manager.createActivationCode = async (account, hostAddress) => {
 }
 
 Manager.authenticate = async (email, password) => {
-    let exists = await Manager.emailExists(email);
-    if(exists) {
-        let account = await Manager.get(email);
-        let correct = await security.checkPassword(password, account.password);
-        if(correct) return Manager.generateToken(account);
+    if(email.indexOf('@') !== -1) { // Is email?
+        let exists = await Manager.emailExists(email);
+        if(exists) {
+            let account = await Manager.getByEmail(email);
+            let correct = await security.checkPassword(password, account.password);
+            if(correct) return Manager.generateToken(account);
+        }
+    } else { // Is username
+        let username = email;
+        let exists = await Manager.usernameExists(username);
+        if(exists) {
+            let account = await Manager.getByUsername(username);
+            let correct = await security.checkPassword(password, account.password);
+            if(correct) return Manager.generateToken(account);
+        }
     }
     return false;
 };

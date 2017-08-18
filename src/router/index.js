@@ -18,6 +18,7 @@ import UserPage from '@/components/pages/UserPage';
 import UserProfile from '@/components/user/UserProfile';
 import UserTournaments from '@/components/user/UserTournaments';
 import UserTeams from '@/components/user/UserTeams';
+import UserSettings from '@/components/user/UserSettings';
 
 Vue.use(Router);
 
@@ -39,12 +40,13 @@ export default new Router({
                 { path: 'news/:id', name: 'Edit News', component: EditNews }
             ]
         },
-        { path: '/user/:username', component: UserPage,
+        { path: '/user/:username', component: UserPage, props: true,
             children: [
                 { path: '', redirect: { name: 'User Profile' } },
                 { path: 'profile', name: 'User Profile', component: UserProfile },
                 { path: 'tournaments', name: 'User Tournaments', component: UserTournaments },
-                { path: 'teams', name: 'User Teams', component: UserTeams }
+                { path: 'teams', name: 'User Teams', component: UserTeams },
+                { path: 'settings', name: 'User Settings', component: UserSettings }
             ]
         },
     ],
