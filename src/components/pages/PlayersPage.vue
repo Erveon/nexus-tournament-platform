@@ -40,7 +40,7 @@
         text-decoration: none;
         background-color: #F0F5F9;
         padding: 1rem 3rem;
-        margin: 1rem 1rem;
+        margin: .5rem 1rem;
         color: black;
         transition: .4s;
         max-width: 150px;
