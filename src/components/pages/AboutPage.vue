@@ -1,17 +1,17 @@
 <template>
     <div class="page-wrapper">
         <div class="page">
-            <card title="Teams">
-                None
+            <card title="About Nexus Gaming">
+                Stump, write something here pls.
             </card>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        name: 'about'
+    }
 </script>
 
 <style lang="scss" scoped>

@@ -1,9 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+// Pages
 import HomePage from '@/components/pages/HomePage';
 import TournamentsPage from '@/components/pages/TournamentsPage';
 import ActivatePage from '@/components/pages/ActivatePage';
+import AboutPage from '@/components/pages/AboutPage';
+import PlayersPage from '@/components/pages/PlayersPage';
+import TeamsPage from '@/components/pages/TeamsPage';
 
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 
@@ -28,6 +32,9 @@ export default new Router({
     routes: [
         { path: '/', redirect: { name: 'Home' } },
         { path: '/home', name: 'Home', component: HomePage },
+        { path: '/about', name: 'About', component: AboutPage },
+        { path: '/players', name: 'Players', component: PlayersPage },
+        { path: '/teams', name: 'Teams', component: TeamsPage },
         { path: '/tournaments', name: 'Tournaments', component: TournamentsPage },
         { path: '/activate', name: 'Activate', component: ActivatePage },
         { path: '/announcement/:post', name: 'Announcement', component: AnnouncementPost },

@@ -24,7 +24,7 @@
             <router-view></router-view>
         </div>
         <div v-if="notFound" class="notfound">
-            <span>User '{{ $route.params.username }}' not found :(</span>
+            <span>User '{{ username }}' not found :(</span>
         </div>
     </div>
 </template>

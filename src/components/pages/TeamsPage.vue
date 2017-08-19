@@ -2,17 +2,18 @@
     <div class="page-wrapper">
         <div class="page">
             <card title="Teams">
-                None
+                Soon™
             </card>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        name: 'teams'
+    }
 </script>
 
 <style lang="scss" scoped>
+  
 </style>

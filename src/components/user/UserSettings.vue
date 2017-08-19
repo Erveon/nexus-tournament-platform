@@ -7,21 +7,22 @@
 </template>
 
 <script>
-    import ProfileSettings from '@/components/user/settings/ProfileSettings';
+    import AccountSettings from '@/components/user/settings/AccountSettings';
     import SocialSettings from '@/components/user/settings/SocialSettings';
+    import account from '@/services/account.service';
 
     export default {
         name: 'user-settings',
         data() {
             return {
                 tabs: [
-                    { title: "Profile", component: ProfileSettings },
+                    { title: "Account", component: AccountSettings },
                     { title: "Social", component: SocialSettings }
                 ]
             };
         },
         beforeRouteEnter(to, from, next) {
-            if(account.authenticated && account.level >= 6) {
+            if(account.authenticated && account.username === to.params.username) {
                 next();
             }
         }
