@@ -15,13 +15,13 @@
 
 <script>
     import { EventBus } from '@/eventbus.js';
-    import Account from '@/services/account.service';
+    import account from '@/services/account.service';
 
     export default {
         name: "nav-account",
         data() {
             return {
-                authenticated: Account.authenticated
+                authenticated: account.authenticated
             }
         },
         mounted() {
@@ -34,7 +34,7 @@
                 EventBus.$emit('showconnect');
             },
             getUsername() {
-                return Account.username;
+                return account.username;
             }
         }
     };
@@ -53,9 +53,7 @@
             text-align: center;
             color: white;
             font-size: 2rem;
-        }
 
-        .connect {
             text-decoration: none;
             border-bottom: 0.6rem solid #165B88;
             transition: 0.3s;

@@ -84,10 +84,10 @@
 
         .header {
             transition: .2s;
-            overflow: auto;
-            position: relative;
             height: 300px;
+            position: relative;
             overflow: hidden;
+            width: 100%;
 
             &:before {
                 content: "";
@@ -96,10 +96,12 @@
                 height: 100%;
                 z-index: -2;
                 position: absolute;
+                overflow: hidden;
             }
 
             .bannerimg img {
                 position: absolute;
+                overflow: hidden;
                 top: 0;
                 width: 100%;
                 z-index: -2;
