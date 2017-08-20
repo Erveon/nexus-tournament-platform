@@ -31,7 +31,11 @@ Account.load = () => {
             Account.level = account.level;
             EventBus.$emit('authentication');
             resolve();
-        }).catch(reject);
+        }).catch(() => {
+            localStorage.removeItem('acc_token');
+            Account.authenticated = false;
+            resolve();
+        });
     });
 };
 

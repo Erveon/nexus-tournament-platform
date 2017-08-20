@@ -1,7 +1,11 @@
 <template>
-    <card class="activation">
-        {{ message }}
-    </card>
+    <div class="page-wrapper">
+        <div class="page">
+            <card class="activation">
+                {{ message }}
+            </card>
+        </div>
+    </div>
 </template>
 
 <script>
