@@ -3,6 +3,7 @@
         <div v-if="canaccess">
             <sidebar></sidebar>
             <main-view></main-view>
+            <rightbar></rightbar>
             <modals></modals>
         </div>
         <div v-else>

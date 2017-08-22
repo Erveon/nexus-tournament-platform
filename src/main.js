@@ -14,6 +14,7 @@ import Tester from '@/services/tester.service';
 Vue.config.productionTip = true;
 
 import Sidebar from '@/components/core/sidebar/Sidebar';
+import Rightbar from '@/components/core/rightbar/Rightbar';
 import Mainview from '@/components/core/mainview/Mainview';
 import Card from '@/components/core/card/Card';
 import ComponentSelector from '@/components/utils/ComponentSelector';
@@ -30,6 +31,7 @@ Vue.component('ladda', Ladda);
 
 // Main components
 Vue.component(Sidebar.name, Sidebar);
+Vue.component(Rightbar.name, Rightbar);
 Vue.component(Mainview.name, Mainview);
 Vue.component(Card.name, Card);
 Vue.component(ComponentSelector.name, ComponentSelector);

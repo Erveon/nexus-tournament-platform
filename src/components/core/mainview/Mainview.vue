@@ -24,6 +24,7 @@
 <style lang="scss" scoped>
     main {
         margin-left: 25rem;
+        margin-right: 25rem;
         transition: 0.4s;
 
         #main-view {
@@ -40,5 +41,9 @@
 
     body.collapsed-sidebar main {
         margin-left: 0;
+    }
+
+    body.collapsed-rightbar main {
+        margin-right: 0;
     }
 </style>
