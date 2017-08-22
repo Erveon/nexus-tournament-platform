@@ -2,44 +2,43 @@
     <div id="rightbar">
         <ul class="nav">
             <li>
-                <router-link class="active" to="nowhere">Friends</router-link>
+                <a @click.prevent="selectFriends()" :class="{ active: component === components.friendlist }">Friends</a>
             </li>
             <li>
-                <router-link to="nowhere">Teams</router-link>
+                <a @click.prevent="selectTeams()" :class="{ active: component === components.teamlist }">Teams</a>
             </li>
         </ul>
-        <ul class="friends">
-            <li>ZombieJC</li>
-            <li>7ox</li>
-            <li>TherawHunter14</li>
-        </ul>
+        <component :is="component"></component>
     </div>
 </template>
 
 <script>
+    import Friendbar from '@/components/core/rightbar/FriendBar';
+    import Teambar from '@/components/core/rightbar/Teambar';
+
     export default {
-        name: 'rightbar'
+        name: 'rightbar',
+        data() {
+            return {
+                components: {
+                    friendlist: Friendbar,
+                    teamlist: Teambar
+                },
+                component: Friendbar
+            };
+        },
+        methods: {
+            selectTeams() {
+                this.component = this.components.teamlist;
+            },
+            selectFriends() {
+                this.component = this.components.friendlist;
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
-
-    .friends {
-        list-style-type: none;
-        margin: 0;
-
-        li {
-            margin: 0;
-            display: block;
-            padding: .8rem 2rem;
-
-            &:hover {
-                background-color: #23323f;
-                cursor: pointer;
-            }
-        }
-    }
-
     #rightbar {
         z-index: 100;
         width: 25rem;
@@ -52,6 +51,7 @@
 
         .nav {
             margin: 0;
+            margin-bottom: 3px;
             list-style-type: none;
             font-size: 0;
             height: 5rem;
@@ -67,6 +67,7 @@
                     display: block;
                     text-decoration: none;
                     color: black;
+                    cursor: pointer;
 
                     &.active {
                         border-bottom: 3px solid #156DAD;
@@ -85,7 +86,9 @@
         }
     }
 
-    body.collapsed-rightbar #rightbar {
-        margin-right: -25rem;
+    @media(max-width: 1300px) {
+        #rightbar {
+            margin-right: -25rem;
+        }
     }
 </style>

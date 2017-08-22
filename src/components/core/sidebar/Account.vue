@@ -2,7 +2,7 @@
     <div id="nav-account">
         <template v-if="authenticated">
             <router-link :to="'/user/' + getUsername()" class="info block">
-                {{ getUsername() }}
+                <span>{{ getUsername() }}</span>
             </router-link>
         </template>
         <template v-else>
@@ -48,8 +48,8 @@
             text-decoration: none;
             background-color: #2980B9;
             display: block;
-            height: 5em;
-            line-height: 5em;
+            height: 10rem;
+            line-height: 10rem;
             text-align: center;
             color: white;
             font-size: 2rem;
@@ -59,6 +59,7 @@
             transition: 0.3s;
 
             &:hover {
+                text-decoration: underline;
                 background-color: #399bdb;
                 border-bottom: 0.6rem solid #267cb5;
             }

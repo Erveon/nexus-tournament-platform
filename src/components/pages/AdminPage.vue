@@ -3,7 +3,7 @@
         <card id="admin-nav" :padding="0">
             <ul>
                 <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
-                <li><router-link to="/admin/news">News</router-link></li>
+                <li><router-link to="/admin/news">Announcements</router-link></li>
             </ul>
         </card>
         <router-view></router-view>

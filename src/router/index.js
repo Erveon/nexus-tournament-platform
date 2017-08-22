@@ -42,9 +42,9 @@ export default new Router({
             children: [
                 { path: '', redirect: { name: 'Dashboard' } },
                 { path: 'dashboard', name: 'Dashboard', component: AdminDashboard },
-                { path: 'news', name: 'News Admin', component: NewsAdmin },
-                { path: 'news/create', name: 'Add News', component: EditNews },
-                { path: 'news/:id', name: 'Edit News', component: EditNews }
+                { path: 'news', name: 'Announcement Admin', component: NewsAdmin },
+                { path: 'news/create', name: 'Add Announcement', component: EditNews },
+                { path: 'news/:id', name: 'Edit Announcement', component: EditNews }
             ]
         },
         { path: '/user/:username', component: UserPage, props: true,

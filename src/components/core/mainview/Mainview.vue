@@ -43,7 +43,9 @@
         margin-left: 0;
     }
 
-    body.collapsed-rightbar main {
-        margin-right: 0;
+    @media(max-width: 1300px) {
+        body main {
+            margin-right: 0;
+        }
     }
 </style>
