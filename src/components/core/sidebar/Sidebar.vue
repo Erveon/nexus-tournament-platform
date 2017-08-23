@@ -2,7 +2,7 @@
     <div id="sidebar">
         <account></account>
         <navigation></navigation>
-        <!-- Feedback -->
+        <span class="by"><a href="https://erveon.net" target="_blank">Developed by Erveon</a></span>
     </div>
 </template>
 
@@ -31,6 +31,23 @@
         background-color: #1B2936;
         margin-left: 0;
         transition: 0.4s;
+
+        .by {
+            font-size: 1rem;
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+
+            a {
+                color: #687784;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 
     body.collapsed-sidebar #sidebar {

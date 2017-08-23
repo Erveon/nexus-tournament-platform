@@ -6,16 +6,22 @@ import HomePage from '@/components/pages/HomePage';
 import TournamentsPage from '@/components/pages/TournamentsPage';
 import ActivatePage from '@/components/pages/ActivatePage';
 import AboutPage from '@/components/pages/AboutPage';
-import PlayersPage from '@/components/pages/PlayersPage';
-import TeamsPage from '@/components/pages/TeamsPage';
+import RankingsPage from '@/components/pages/RankingsPage';
+import ShopPage from '@/components/pages/ShopPage';
 
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 
-// Administration
+// Admin
 import AdminPage from '@/components/pages/AdminPage';
+
+// Announcement Admin
 import NewsAdmin from '@/components/news/admin/List';
 import EditNews from '@/components/news/admin/Edit';
 import AdminDashboard from '@/components/admin/AdminDashboard';
+
+// Tournament Admin
+import TournamentAdmin from '@/components/tournaments/admin/List';
+import TournamentCreate from '@/components/tournaments/admin/Create';
 
 // User
 import UserPage from '@/components/pages/UserPage';
@@ -33,8 +39,8 @@ export default new Router({
         { path: '/', redirect: { name: 'Home' } },
         { path: '/home', name: 'Home', component: HomePage },
         { path: '/about', name: 'About', component: AboutPage },
-        { path: '/players', name: 'Players', component: PlayersPage },
-        { path: '/teams', name: 'Teams', component: TeamsPage },
+        { path: '/rankings', name: 'Rankings', component: RankingsPage },
+        { path: '/shop', name: 'Shop', component: ShopPage },
         { path: '/tournaments', name: 'Tournaments', component: TournamentsPage },
         { path: '/activate', name: 'Activate', component: ActivatePage },
         { path: '/announcement/:post', name: 'Announcement', component: AnnouncementPost },
@@ -44,7 +50,9 @@ export default new Router({
                 { path: 'dashboard', name: 'Dashboard', component: AdminDashboard },
                 { path: 'news', name: 'Announcement Admin', component: NewsAdmin },
                 { path: 'news/create', name: 'Add Announcement', component: EditNews },
-                { path: 'news/:id', name: 'Edit Announcement', component: EditNews }
+                { path: 'news/:id', name: 'Edit Announcement', component: EditNews },
+                { path: 'tournaments', name: 'Tournament Admin', component: TournamentAdmin },
+                { path: 'tournaments/create', name: 'Create Tournament', component: TournamentCreate },
             ]
         },
         { path: '/user/:username', component: UserPage, props: true,

@@ -1,15 +1,11 @@
 <template>
-    <div class="page-wrapper">
-        <div class="page">
-            <card v-if="players" title="Players">
-                <div class="players">
-                    <router-link class="player" v-for="player in players" :key="player.username" :to="'/user/' + player.username">
-                        {{ player.username }}
-                    </router-link>
-                </div>
-            </card>
+    <card v-if="players">
+        <div class="players">
+            <router-link class="player" v-for="player in players" :key="player.username" :to="'/user/' + player.username">
+                {{ player.username }}
+            </router-link>
         </div>
-    </div>
+    </card>
 </template>
 
 <script>

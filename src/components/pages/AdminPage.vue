@@ -1,12 +1,17 @@
 <template>
-    <div id="admin" class="row">
-        <card id="admin-nav" :padding="0">
-            <ul>
-                <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
-                <li><router-link to="/admin/news">Announcements</router-link></li>
-            </ul>
-        </card>
-        <router-view></router-view>
+    <div class="page-wrapper">
+        <div class="page">
+            <div id="admin" class="row">
+                <card id="admin-nav" :padding="0">
+                    <ul>
+                        <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
+                        <li><router-link to="/admin/news">Announcements</router-link></li>
+                        <li><router-link to="/admin/tournaments">Tournaments</router-link></li>
+                    </ul>
+                </card>
+                <router-view></router-view>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -24,11 +29,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-    #admin {
-        padding: 3rem 5rem;
-    }
-
     .dark-theme {
         a {
             color: white !important;

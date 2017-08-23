@@ -23,8 +23,8 @@
                 routes: [
                     new Route("/home", "Home", "home"),
                     new Route("/tournaments", "Tournaments", "trophy"),
-                    new Route("/players", "Players", "user"),
-                    new Route("/teams", "Teams", "users"),
+                    new Route("/rankings", "Rankings", "bar-chart"),
+                    new Route("/shop", "Shop", "shopping-cart"),
                     new Route("/admin", "Admin", "star", 9),
                     new Route("/about", "About", "info-circle"),
                 ],

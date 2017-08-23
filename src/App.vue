@@ -107,6 +107,10 @@
         font-weight: bold;
         text-decoration: none;
     }
+    
+    .dark-theme input {
+        color: black;
+    }
 
     .dark-theme .userlink {
         color: white;

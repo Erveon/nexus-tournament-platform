@@ -1,10 +1,12 @@
 <template>
-    <div class="home">
-        <div class="row">
-            <news class="eight columns"></news>
-            <div class="sidebar four columns">
-                <next-tournament></next-tournament>
-                <tournament-winners></tournament-winners>
+    <div class="page-wrapper">
+        <div class="page">
+            <div class="row">
+                <news class="eight columns"></news>
+                <div class="sidebar four columns">
+                    <next-tournament></next-tournament>
+                    <tournament-winners></tournament-winners>
+                </div>
             </div>
         </div>
     </div>
