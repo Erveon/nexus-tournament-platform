@@ -1,5 +1,8 @@
 import './assets/css/normalize.css';
 import './assets/css/skeleton.css';
+import 'flatpickr/dist/flatpickr.css';
+import 'flatpickr/dist/flatpickr';
+import 'flatpickr/dist/flatpickr.css';
 
 import "@/components/modals/vodal/style/common.css";
 import "@/components/modals/vodal/style/zoom.css";
@@ -23,11 +26,13 @@ import Modals from '@/components/modals/Modals';
 import Vodal from '@/components/modals/vodal';
 import Ladda from 'vue-ladda'
 import VeeValidate from 'vee-validate';
+import flatPickr from 'vue-flatpickr-component';
 
 // Libraries
 Vue.use(VeeValidate);
 Vue.component(Vodal.name, Vodal);
 Vue.component('ladda', Ladda);
+Vue.component('flatpickr', flatPickr);
 
 // Main components
 Vue.component(Sidebar.name, Sidebar);
@@ -36,6 +41,7 @@ Vue.component(Mainview.name, Mainview);
 Vue.component(Card.name, Card);
 Vue.component(ComponentSelector.name, ComponentSelector);
 Vue.component(Modals.name, Modals);
+
 
 Promise.all([
     Tester.init(),
