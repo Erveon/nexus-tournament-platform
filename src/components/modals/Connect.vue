@@ -156,7 +156,8 @@
             }
         },
         mounted() {
-            EventBus.$on('showconnect', () => {
+            EventBus.$on('showconnect', (data) => {
+                this.login = data.login;
                 this.show = true;
                 this.focus();
             });

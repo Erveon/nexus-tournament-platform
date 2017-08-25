@@ -9,7 +9,7 @@
         name: "theme-toggle",
         data() {
             return {
-                theme: window.localStorage.getItem('theme') || 'default',
+                theme: window.localStorage.getItem('theme') || 'dark',
             };
         },
         created() {

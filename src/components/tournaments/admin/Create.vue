@@ -1,21 +1,41 @@
 <template>
     <card>
-        <div class="row">
-            <label for="tourneyname">Tournament name</label>
-            <input type="text" id="tourneyname" placeholder="Name" class="twelve columns" />
-        </div>
-        <div class="row">
-            <div class="four columns">
-                <label for="tourneystart">Tournament start</label>
-                <flatpickr class="twelve columns" id="tourneystart" v-model="tourneystart" placeholder="Tournament start" :config="{ enableTime: true }"></flatpickr>
+        <div class="options">
+            <h4>General information</h4>
+            <div class="row">
+                <div class="nine columns">
+                    <label for="tourneyname">Tournament name</label>
+                    <input type="text" id="tourneyname" placeholder="Name" class="twelve columns" />
+                </div>
+                <div class="three columns">
+                    <label for="prizepool">Prizepool</label>
+                    <input type="number" id="prizepool" placeholder="Prize" class="twelve columns" />
+                </div>
             </div>
-            <div class="four columns">
-                <label for="checkinstart">Check-in start</label>
-                <flatpickr class="twelve columns" id="checkinstart" v-model="checkinstart" placeholder="Check-in start" :config="{ enableTime: true }"></flatpickr>
+            <div class="row">
+                <div class="six columns">
+                    <label for="tourneystart">Tournament start</label>
+                    <flatpickr class="twelve columns" id="tourneystart" v-model="tourneystart" placeholder="Tournament start" :config="{ enableTime: true }"></flatpickr>
+                </div>
+                <div class="six columns">
+                    <label for="checkinstart">Check-in start</label>
+                    <flatpickr class="twelve columns" id="checkinstart" v-model="checkinstart" placeholder="Check-in start" :config="{ enableTime: true }"></flatpickr>
+                </div>
             </div>
-            <div class="four columns">
-                <label for="checkinstop">Check-in end</label>
-                <flatpickr class="twelve columns" id="checkinstop" v-model="checkinstop" placeholder="Check-in end" :config="{ enableTime: true }"></flatpickr>
+            <h4>Options</h4>
+            <div class="row">
+                <div class="twelve columns">
+                    <div class="pretty primary">
+                        <input type="checkbox"> 
+                        <label><i class="mdi mdi-check"></i> Published</label>
+                    </div>
+                </div>
+                <div class="twelve columns">
+                    <div class="pretty primary">
+                        <input type="checkbox"> 
+                        <label><i class="mdi mdi-check"></i> Invitational</label>
+                    </div>
+                </div>
             </div>
         </div>
     </card>
@@ -27,12 +47,19 @@
         data() {
             return {
                 tourneystart: '',
-                checkinstart: '',
-                checkinstop: '',
+                checkinstart: ''
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .options {
+        margin: 0 auto;
+        max-width: 700px;
+    }
+
+    .inline {
+        display: inline-block;
+    }
 </style>

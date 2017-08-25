@@ -2,10 +2,18 @@
     <div id="topbar-wrapper">
         <sidebar-toggle class="sidebar-toggle"></sidebar-toggle>
         <div id="topbar">
-            <span><router-link class="home-link" to="/">Nexus</router-link> / <strong>{{ breadcrumb }}</strong></span>
-            <div class="pull-right options">
-                <router-link v-if="username" :to="'/user/' + username + '/settings'"><i class="fa fa-cog"></i></router-link>
-                <theme-toggle></theme-toggle>
+            <span><!--<router-link class="home-link" to="/">Nexus</router-link> / <strong>-->{{ breadcrumb }}</strong></span>
+            <div class="options">
+                <template v-if="username">
+                    <router-link class="text" v-if="username" :to="'/user/' + username">{{username}}</router-link>
+                    <router-link v-if="username" :to="'/user/' + username + '/settings'"><i class="fa fa-cog"></i></router-link>
+                    <theme-toggle></theme-toggle>
+                </template>
+                <template v-else>
+                    <theme-toggle></theme-toggle>
+                    <a @click.prevent="showLogin()" class="text cta">Log in</a>
+                    <a @click.prevent="showRegister()" class="text cta">Sign up</a>
+                </template>
             </div>
         </div>
     </div>
@@ -34,6 +42,14 @@
                 return this.$route.name
             }
         },
+        methods: {
+            showLogin() {
+                EventBus.$emit('showconnect', { login: true });
+            },
+            showRegister() {
+                EventBus.$emit('showconnect', { login: false });
+            }
+        },
         components: {
             'theme-toggle': ThemeToggle,
             'sidebar-toggle': SidebarToggle
@@ -49,20 +65,20 @@
 
     .sidebar-toggle {
         position: absolute;
-        top: .5rem;
+        top: .4rem;
         margin-left: 1.2rem;
     }
 
     #topbar-wrapper {
+        box-sizing: border-box;
         background-color: #fff;
         border: 1px solid #E4E2E2;
         line-height: 5rem;
-        display: block;
         height: 5rem;
     }
 
     #topbar {
-        padding: 0 5rem;
+        padding: 0 0 0 5rem;
     }
 
     #topbar > * {
@@ -92,18 +108,37 @@
     }
 
     .options {
+        font-size: 0;
+        position: absolute;
+        top: 0; right: 0;
+
         a {
             cursor: pointer;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #444444;
             background-color: transparent;
             text-align: center;
             transition: .4s;
             display: inline-block;
-            padding: 0 1.2rem;
+            padding: 0 1.5rem;
 
             &:hover {
                 background-color: #F0F5F9;
+            }
+
+            &.text {
+                text-decoration: none;
+                font-size: 1.6rem;
+            }
+
+            &.text.cta {
+                padding: 0 3.7rem;
+                color: white;
+                background-color: #156DAD;
+
+                &:hover {
+                    background-color: #277cba;
+                }
             }
         }
     }

@@ -3,6 +3,8 @@ import './assets/css/skeleton.css';
 import 'flatpickr/dist/flatpickr.css';
 import 'flatpickr/dist/flatpickr';
 import 'flatpickr/dist/flatpickr.css';
+import 'mdi/css/materialdesignicons.css';
+import 'pretty-checkbox/src/pretty.css';
 
 import "@/components/modals/vodal/style/common.css";
 import "@/components/modals/vodal/style/zoom.css";

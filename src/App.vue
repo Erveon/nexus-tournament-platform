@@ -3,7 +3,6 @@
         <div v-if="canaccess">
             <sidebar></sidebar>
             <main-view></main-view>
-            <rightbar></rightbar>
             <modals></modals>
         </div>
         <div v-else>
@@ -107,7 +106,7 @@
         font-weight: bold;
         text-decoration: none;
     }
-    
+
     .dark-theme input {
         color: black;
     }
@@ -123,6 +122,25 @@
         .page {
             max-width: 1200px;
             margin: 3rem auto;
+        }
+    }
+
+    input[type="email"], input[type="number"], input[type="search"], 
+    input[type="text"], input[type="tel"], input[type="url"], input[type="password"], 
+    textarea, select {
+        border-radius: 2px;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    .pretty label i {
+        background-color: white;
+
+        &:after {
+            width: 15px;
+            height: 15px;
         }
     }
 </style>

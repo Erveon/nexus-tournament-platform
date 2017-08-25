@@ -1,17 +1,29 @@
 <template>
     <div id="friends">
-        <!--<ul>
-            <li>7ox</li>
-            <li>TherawHunter14</li>
-            <li>ZombieJC</li>
-        </ul>-->
-        <a class="add" @click.prevent="addFriend()">Add Friend</a>
-    </div>    
+        <template v-if="username">
+            <!--<ul>
+                <li>7ox</li>
+                <li>TherawHunter14</li>
+                <li>ZombieJC</li>
+            </ul>-->
+            <a class="add" @click.prevent="addFriend()">Add Friend</a>
+        </template>
+        <template v-else>
+            <span class="signin">Log in to access your friends</span>
+        </template>
+    </div>
 </template>
 
 <script>
+    import account from '@/services/account.service';
+
     export default {
         name: 'friendbar',
+        data() {
+            return {
+                username: account.username
+            };
+        },
         methods: {
             addFriend() {
                 alert('In development');
@@ -21,6 +33,11 @@
 </script>
 
 <style lang="scss" scoped>
+    .signin {
+        display: block;
+        margin-top: 1rem;
+    }
+
     #friends {
         text-align: center;
 

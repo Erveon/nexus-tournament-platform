@@ -3,6 +3,7 @@
         <topbar></topbar>
         <div id="main-view">
             <router-view></router-view>
+            <rightbar></rightbar>
         </div>
     </main>
 </template>
@@ -24,10 +25,10 @@
 <style lang="scss" scoped>
     main {
         margin-left: 25rem;
-        margin-right: 25rem;
         transition: 0.4s;
 
         #main-view {
+            margin-right: 25rem;
             display: block;
             position: relative;
         }
@@ -44,7 +45,7 @@
     }
 
     @media(max-width: 1300px) {
-        body main {
+        body main #main-view {
             margin-right: 0;
         }
     }

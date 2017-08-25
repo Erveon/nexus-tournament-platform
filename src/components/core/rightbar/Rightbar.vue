@@ -44,10 +44,11 @@
         width: 25rem;
         position: fixed;
         height: 100%;
+        height: calc(100% - 5rem);
         background-color: #fff;
         transition: 0.4s;
         right: 0;
-        top: 0;
+        top: 5rem;
 
         .nav {
             margin: 0;

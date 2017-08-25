@@ -1,12 +1,24 @@
 <template>
     <div id="teams">
+        <template v-if="username">
         <a class="create" @click.prevent="createTeam()">Create Team</a>
+        </template>
+        <template v-else>
+            <span class="signin">Log in to access your teams</span>
+        </template>
     </div>
 </template>
 
 <script>
+    import account from '@/services/account.service';
+
     export default {
         name: 'teambar',
+        data() {
+            return {
+                username: account.username
+            };
+        },
         methods: {
             createTeam() {
                 alert('In development');
@@ -16,6 +28,11 @@
 </script>
 
 <style lang="scss" scoped>
+    .signin {
+        display: block;
+        margin-top: 1rem;
+    }
+
     #teams {
         text-align: center;
 
