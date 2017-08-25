@@ -1,20 +1,18 @@
 <template>
     <div id="sidebar">
-        <div class="brand"><span>Nexus Gaming</span></div>
+        <router-link to="/" class="brand"><span>Nexus Gaming</span></router-link>
         <navigation></navigation>
         <span class="by"><a href="https://erveon.net" target="_blank">Developed by Erveon</a></span>
     </div>
 </template>
 
 <script>
-    import Account from '@/components/core/sidebar/Account';
     import Navigation from '@/components/core/navigation/Navigation';
 
     export default {
         name: "sidebar",
         components: {
-            'navigation': Navigation,
-            'account': Account
+            'navigation': Navigation
         },
         data() {
             return { };
@@ -33,6 +31,7 @@
         transition: 0.4s;
 
         .brand {
+            display: block;
             height: 5rem;
             background-color: #156DAD;
             color: white;
@@ -40,7 +39,11 @@
             line-height: 5rem;
             font-size: 1.8rem;
             font-family: 'Muli';
-            font-weight: bold;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: #237dbc;
+            }
 
             span {
                 display: inline-block;

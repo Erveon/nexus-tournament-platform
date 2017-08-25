@@ -65,7 +65,7 @@
 
     .sidebar-toggle {
         position: absolute;
-        top: .4rem;
+        top: .2rem;
         margin-left: 1.2rem;
     }
 
@@ -79,10 +79,6 @@
 
     #topbar {
         padding: 0 0 0 5rem;
-    }
-
-    #topbar > * {
-        vertical-align: middle;
     }
 
     .dark-theme {
