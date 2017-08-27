@@ -12,7 +12,7 @@
             <div class="row buttons">
                 <div class="pull-right">
                     <a href="cancel" @click.prevent="cancel()" class="cancel">Cancel</a>
-                    <a href="submit" @click.prevent="submit()" class="btn btn-primary">Save changes</a>
+                    <a href="submit" @click.prevent="submit()" class="btn btn-primary">{{ submit }}</a>
                 </div>
             </div>
         </form>
@@ -31,11 +31,13 @@
                 title: '',
                 content: '',
                 id: undefined,
-                loaded: false
+                loaded: false,
+                submit: 'Create'
             };
         },
         mounted() {
             this.id = this.$route.params.id;
+            if(this.id) this.submit = "Save changes";
             this.load().then(() => {
                 CKEDITOR.replace('announcementbody');
             });
@@ -94,6 +96,7 @@
     }
     
     a.cancel {
+        font-size: 1.5rem;
         text-decoration: none;
         color: #1c1c1c;
         padding: .2rem 1rem;

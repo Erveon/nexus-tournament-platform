@@ -16,12 +16,12 @@ import AdminPage from '@/components/pages/AdminPage';
 
 // Announcement Admin
 import NewsAdmin from '@/components/news/admin/List';
-import EditNews from '@/components/news/admin/Edit';
+import NewsSettings from '@/components/news/admin/Settings';
 import AdminDashboard from '@/components/admin/AdminDashboard';
 
 // Tournament Admin
 import TournamentAdmin from '@/components/tournaments/admin/List';
-import TournamentCreate from '@/components/tournaments/admin/Create';
+import TournamentSettings from '@/components/tournaments/admin/Settings';
 
 // User
 import UserPage from '@/components/pages/UserPage';
@@ -49,10 +49,10 @@ export default new Router({
                 { path: '', redirect: { name: 'Dashboard' } },
                 { path: 'dashboard', name: 'Dashboard', component: AdminDashboard },
                 { path: 'news', name: 'Announcement Admin', component: NewsAdmin },
-                { path: 'news/create', name: 'Add Announcement', component: EditNews },
-                { path: 'news/:id', name: 'Edit Announcement', component: EditNews },
+                { path: 'news/create', name: 'Add Announcement', component: NewsSettings },
+                { path: 'news/:id', name: 'Edit Announcement', component: NewsSettings },
                 { path: 'tournaments', name: 'Tournament Admin', component: TournamentAdmin },
-                { path: 'tournaments/create', name: 'Create Tournament', component: TournamentCreate },
+                { path: 'tournaments/create', name: 'Create Tournament', component: TournamentSettings },
             ]
         },
         { path: '/user/:username', component: UserPage, props: true,

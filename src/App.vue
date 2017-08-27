@@ -77,10 +77,11 @@
 
     .btn {
         color: white;
-        padding: .2rem 1rem;
+        padding: .5rem 1.4rem;
         text-decoration: none;
         transition: 0.3s;
         border-radius: .3rem;
+        font-size: 1.5rem;
         background-color: #939393;
         border-bottom: .3rem solid #828282;
 

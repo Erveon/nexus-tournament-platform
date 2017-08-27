@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
     #sidebar {
-        z-index: 99999999999;
+        z-index: 9998;
         width: 25rem;
         position: fixed;
         height: 100%;
