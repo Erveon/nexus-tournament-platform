@@ -76,6 +76,7 @@
     }
 
     .btn {
+        cursor: pointer;
         color: white;
         padding: .5rem 1.4rem;
         text-decoration: none;
