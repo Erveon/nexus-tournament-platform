@@ -76,22 +76,56 @@
                 submit: 'Create'
             }
         },
+        mounted() {
+            this.id = this.$route.params.id;
+            if(this.id) this.submit = "Save changes";
+            this.load();
+        },
         methods: {
+            getTournament(id) {
+                return axios.get(`/api/tournaments/${id}`)
+                .then(res => {
+                    let tournament = res.data;
+                    this.name = tournament.name;
+                    this.tourneystart = tournament.data.tourneystart;
+                    this.prizepool = tournament.data.prizepool;
+                    this.checkinstart = tournament.data.checkinstart;
+                    this.published = tournament.data.published;
+                    this.invitational = tournament.data.invitational;
+                });
+            },
+            getValues() {
+                return {
+                    name: this.name,
+                    data: {
+                        prizepool: this.prizepool,
+                        tourneystart: this.checkinstart,
+                        checkinstart: this.tourneystart,
+                        published: this.published,
+                        invitational: this.invitational 
+                    }
+                };
+            },
+            load() {
+                return new Promise((resolve, reject) => {
+                    if(this.id) {
+                        this.getTournament(this.id)
+                        .then(() => {
+                            this.loaded = true;
+                            resolve();
+                        });
+                    } else {
+                        this.loaded = true;
+                        resolve();
+                    }
+                });
+            },
             submitForm() {
                 this.$validator.validateAll().then(valid => {
                     if(valid && this.checkinstart !== '' && this.tourneystart !== '') {
-                        axios.post(`/api/tournaments`, {
-                            name: this.name,
-                            data: {
-                                prizepool: this.prizepool,
-                                tourneystart: this.checkinstart,
-                                checkinstart: this.tourneystart,
-                                published: this.published,
-                                invitational: this.invitational 
-                            }
-                        })
+                        axios.post(`/api/tournaments`, this.getValues())
                         .then(res => {
-                            console.log(res.data.id);
+                            this.$router.push('/admin/tournaments/' + res.data.id);
                         });
                     } 
                 });

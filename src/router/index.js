@@ -53,6 +53,7 @@ export default new Router({
                 { path: 'news/:id', name: 'Edit Announcement', component: NewsSettings },
                 { path: 'tournaments', name: 'Tournament Admin', component: TournamentAdmin },
                 { path: 'tournaments/create', name: 'Create Tournament', component: TournamentSettings },
+                { path: 'tournaments/:id', name: 'Edit Tournament', component: TournamentSettings },
             ]
         },
         { path: '/user/:username', component: UserPage, props: true,
