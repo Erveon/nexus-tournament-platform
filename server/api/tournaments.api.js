@@ -10,12 +10,20 @@ router.post('/', auth(), async (req, res) => {
     } else if(user.level < 6) {
         res.sendStatus(403);
     } else {
-        console.log(req.body);
-        /*let name = req.body.name, data = req.body.data;
+        let name = req.body.name, data = req.body.data;
         let id = await tournamentsdb.createTournament(name, data)
-        .then(() => res.json({id: id}));*/
-        res.sendStatus(200);
+        res.json({id: id});
     }
+});
+
+router.get('/', async (req, res) => {
+    let tournaments = await tournamentsdb.getTournaments();
+    res.json(tournaments);
+});
+
+router.get('/list/:page/:amount', async (req, res) => {
+    let page = req.params.page, amount = req.params.amount || 5;
+    res.json(await tournamentsdb.getTournaments(amount, page * amount));
 });
 
 function auth() {

@@ -79,14 +79,19 @@
         methods: {
             submitForm() {
                 this.$validator.validateAll().then(valid => {
-                    if(valid) {
+                    if(valid && this.checkinstart !== '' && this.tourneystart !== '') {
                         axios.post(`/api/tournaments`, {
                             name: this.name,
-                            prizepool: this.prizepool,
-                            tourneystart: this.checkinstart,
-                            checkinstart: this.tourneystart,
-                            published: this.published,
-                            invitational: this.invitational 
+                            data: {
+                                prizepool: this.prizepool,
+                                tourneystart: this.checkinstart,
+                                checkinstart: this.tourneystart,
+                                published: this.published,
+                                invitational: this.invitational 
+                            }
+                        })
+                        .then(res => {
+                            console.log(res.data.id);
                         });
                     } 
                 });
