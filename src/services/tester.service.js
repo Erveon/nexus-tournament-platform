@@ -16,7 +16,7 @@ Tester.init = () => {
 
 Tester.authenticate = (pw) => {
     return new Promise((resolve, reject) => {
-        if(pw === '#kanberry') {
+        if(pw === '#7oxic') {
             localStorage.setItem('testerpw', pw);
             Tester.authenticated = true;
         }

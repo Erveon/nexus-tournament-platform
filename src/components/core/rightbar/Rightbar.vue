@@ -13,8 +13,8 @@
 </template>
 
 <script>
-    import Friendbar from '@/components/core/rightbar/FriendBar';
-    import Teambar from '@/components/core/rightbar/Teambar';
+    import Friendbar from './FriendBar';
+    import Teambar from './Teambar';
 
     export default {
         name: 'rightbar',
