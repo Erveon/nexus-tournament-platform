@@ -11,6 +11,15 @@ Database.createTournament = (name, data) => {
     });
 };
 
+Database.editTournament = (id, name, data) => {
+    return new Promise((resolve, reject) => {
+        database.query(`UPDATE tournaments SET name = $2, data = $3 WHERE id = $1`, 
+            [id, name, data])
+        .then(resolve)
+        .catch(reject);
+    });
+};
+
 Database.getTournaments = () => {
     return new Promise((resolve, reject) => {
         database.query(`SELECT * FROM tournaments`, [])
@@ -32,6 +41,18 @@ Database.getTournaments = (amount, offset) => {
                 tournaments.push(tournament);
             }
             resolve(tournaments);
+        }).catch(reject);
+    });
+};
+
+Database.getTournament = (id) => {
+    return new Promise((resolve, reject) => {
+        database.query(`SELECT * FROM tournaments
+            WHERE tournaments.id = $1`, 
+            [id])
+        .then(res => {
+            if(res.rows.length > 0) resolve(res.rows[0]);
+            else resolve({});
         }).catch(reject);
     });
 };

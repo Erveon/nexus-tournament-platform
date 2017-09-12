@@ -50,9 +50,8 @@ Database.editPost = (id, title, content) => {
             SET title = $2, content = $3
             WHERE id = $1`,
             [id, title, content])
-        .then(res => {
-            resolve();
-        }).catch(reject);
+        .then(resolve)
+        .catch(reject);
     });
 };
 

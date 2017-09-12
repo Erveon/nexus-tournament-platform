@@ -123,10 +123,21 @@
             submitForm() {
                 this.$validator.validateAll().then(valid => {
                     if(valid && this.checkinstart !== '' && this.tourneystart !== '') {
-                        axios.post(`/api/tournaments`, this.getValues())
-                        .then(res => {
-                            this.$router.push('/admin/tournaments/' + res.data.id);
-                        });
+                        let values = this.getValues();
+                        if(this.id) {
+                            // Save tournament
+                            values.id = this.id;
+                            axios.post(`/api/tournaments/${this.id}`, values)
+                            .then(res => {
+                                this.$router.push('/admin/tournaments/');
+                            });
+                        } else {
+                            // Create new
+                            axios.post(`/api/tournaments`, values)
+                            .then(res => {
+                                this.$router.push('/admin/tournaments/' + res.data.id);
+                            });
+                        }
                     } 
                 });
             }

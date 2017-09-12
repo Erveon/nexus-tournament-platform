@@ -10,6 +10,7 @@ import RankingsPage from '@/components/pages/RankingsPage';
 import ShopPage from '@/components/pages/ShopPage';
 
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
+import Tournament from '@/components/tournaments/Tournament';
 
 // Admin
 import AdminPage from '@/components/pages/AdminPage';
@@ -42,6 +43,7 @@ export default new Router({
         { path: '/rankings', name: 'Rankings', component: RankingsPage },
         { path: '/shop', name: 'Shop', component: ShopPage },
         { path: '/tournaments', name: 'Tournaments', component: TournamentsPage },
+        { path: '/tournaments/:id', name: 'Tournament', component: Tournament },
         { path: '/activate', name: 'Activate', component: ActivatePage },
         { path: '/announcement/:post', name: 'Announcement', component: AnnouncementPost },
         { path: '/admin', component: AdminPage,
