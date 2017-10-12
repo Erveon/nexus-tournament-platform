@@ -10,6 +10,13 @@
                 </div>
             </div>
             <div class="row">
+                <div class="twelve columns">
+                    <label for="name">Background image</label>
+                    <input v-model="background" type="text" name="background" id="background" placeholder="Background" class="twelve columns" />
+                    <span class="error twelve columns" v-show="errors.has('background')">{{ errors.first('background') }}</span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="six columns">
                     <label for="prizepool">Prizepool</label>
                     <input v-model="prizepool" v-validate="'required'" type="number" name="prizepool" min="0" id="prizepool" placeholder="Prize" class="twelve columns" />
@@ -69,6 +76,7 @@
                 name: '',
                 prizepool: 0,
                 format: 3,
+                background: '',
                 published: false,
                 invitational: false,
                 checkinstart: '',
@@ -92,6 +100,7 @@
                     this.checkinstart = tournament.data.checkinstart;
                     this.published = tournament.data.published;
                     this.invitational = tournament.data.invitational;
+                    this.background = tournament.data.background;
                 });
             },
             getValues() {
@@ -102,7 +111,8 @@
                         tourneystart: this.checkinstart,
                         checkinstart: this.tourneystart,
                         published: this.published,
-                        invitational: this.invitational 
+                        invitational: this.invitational,
+                        background: this.background
                     }
                 };
             },
