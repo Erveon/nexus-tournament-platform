@@ -12,6 +12,11 @@ import ShopPage from '@/components/pages/ShopPage';
 import AnnouncementPost from '@/components/news/announcements/AnnouncementPost';
 import Tournament from '@/components/tournaments/Tournament';
 
+// Tournament tabs
+import TournamentAbout from '@/components/tournaments/tournament/about';
+import TournamentBracket from '@/components/tournaments/tournament/bracket';
+import TournamentMatch from '@/components/tournaments/tournament/match';
+
 // Admin
 import AdminPage from '@/components/pages/AdminPage';
 
@@ -43,7 +48,14 @@ export default new Router({
         { path: '/rankings', name: 'Rankings', component: RankingsPage },
         { path: '/shop', name: 'Shop', component: ShopPage },
         { path: '/tournaments', name: 'Tournaments', component: TournamentsPage },
-        { path: '/tournaments/:id', name: 'Tournament', component: Tournament },
+        { path: '/tournaments/:id', component: Tournament,
+            children: [
+                { path: '', redirect: { name: 'Tournament About' } },
+                { path: 'about', name: 'Tournament About', component: TournamentAbout },
+                { path: 'bracket', name: 'Tournament Bracket', component: TournamentBracket },
+                { path: 'match', name: 'Tournament Match', component: TournamentMatch },
+            ]  
+        },
         { path: '/activate', name: 'Activate', component: ActivatePage },
         { path: '/announcement/:post', name: 'Announcement', component: AnnouncementPost },
         { path: '/admin', component: AdminPage,

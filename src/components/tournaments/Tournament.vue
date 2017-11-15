@@ -1,7 +1,16 @@
 <template>
     <div class="page-wrapper">
-        <div class="page">
-            <card v-if="tournament">{{ tournament.name }}</card>
+        <div class="page-wrapper">
+            <div class="page row">
+                <card class="sub-nav" :padding="0">
+                    <ul>
+                        <li><router-link :to="'/tournaments/' + tournament.id + '/about'" exact>About</router-link></li>
+                        <li><router-link :to="'/tournaments/' + tournament.id + '/bracket'" exact>Bracket</router-link></li>
+                        <li><router-link :to="'/tournaments/' + tournament.id + '/match'" exact>My match</router-link></li>
+                    </ul>
+                </card>
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>
